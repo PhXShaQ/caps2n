@@ -486,7 +486,7 @@
       <h1>The AI creative platform to bring your content to life</h1>
 
       <div class="buttons">
-        <a href="mycapstone/pages/registrationform.php">Sign-up</a>
+        <a href="caps2n/pages/registrationform.php">Sign-up</a>
         <button class="secondary">Contact sales</button>
       </div>
     </div>
