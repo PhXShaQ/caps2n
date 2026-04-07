@@ -565,5 +565,5 @@
 </script>
 
   </body>
-  <?php include "../caps/pages/footer.php"; ?>
+  <?php include "../caps2n/pages/footer.php"; ?>
   </html>
