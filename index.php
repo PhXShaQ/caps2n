@@ -476,8 +476,8 @@
   </nav>
   
     <div class="auth">
-      <a href="../caps/pages/loginform.php">Login</a>
-      <a href="../caps/pages/registrationform.php">Sign-up</a>
+      <a href="pages/loginform.php">Login</a>
+      <a href="pages/registrationform.php">Sign-up</a>
     </div>
   </header>
 
@@ -565,5 +565,5 @@
 </script>
 
   </body>
-  <?php include "../caps2n/client/pages/footer.php"; ?>
+  <?php include "pages/footer.php"; ?>
   </html>
