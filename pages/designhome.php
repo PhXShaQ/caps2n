@@ -57,7 +57,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
 
             <div class="content-body">
                 <div class="container2">
-                    <h1>Good evening, <?php echo htmlspecialchars($email); ?> 👋</h1>
+                    <h1>Good evening, <?php echo htmlspecialchars($userEmail); ?> 👋</h1>
 
                     <div class="card-container">
 
