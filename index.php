@@ -492,7 +492,7 @@
     </div>
 
     <div class="hero-right">
-      
+   
     </div>
   </section>
   
