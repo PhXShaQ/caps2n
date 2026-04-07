@@ -24,7 +24,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
         <div class="sidebar">
             <div class="logos">
                 <img src="../logonam.png" alt="logo"/>
-                <h2>Kevin Angel's </h2>
+                <h2>Kevin Angel's</h2>
             </div>
             <a href="designhome.php" class="menu-item"><i data-lucide="house"></i> Home</a>
             <a href="design1.php" class="menu-item" style="background: var(--purple); color: white;"><i data-lucide="mic"></i> Meeting</a>
