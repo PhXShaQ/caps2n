@@ -492,7 +492,7 @@
     </div>
 
     <div class="hero-right">
-      Kevin's Creative is a single platform to generate, edit, and localize premium audio and video in minutes. Powering millions of creators, marketing teams, and media companies worldwide.
+      Kevin's meeting Creative is a single platform to generate, edit, and localize premium audio and video in minutes. Powering millions of creators, marketing teams, and media companies worldwide.
     </div>
   </section>
   
