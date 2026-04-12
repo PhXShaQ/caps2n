@@ -66,13 +66,13 @@ $initial = strtoupper(substr($userEmail, 0, 1));
                             <p>Start Meeting</p>
                         </div>
 
-                        <div class="card" onclick="navigateTo('design2.php')">
-                            <div class="icon">🎧</div>
+                        <div class="card" onclick"navigateTo('design2.php')">
+                            <div class="icon">🗣️</div>
                             <p>Voice Cloaning</p>
                         </div>
 
                         <div class="card" onclick="navigateTo('design3.php')">
-                            <div class="icon">🗣️</div>
+                            <div class="icon">🔊</div>
                             <p>Upload Audio</p>
                         </div>
 
