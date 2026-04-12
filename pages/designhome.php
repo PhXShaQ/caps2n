@@ -72,7 +72,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
                         </div>
 
                         <div class="card" onclick="navigateTo('design3.php')">
-                            <div class="icon">🎬</div>
+                            <div class="icon">🗣️</div>
                             <p>Upload Audio</p>
                         </div>
 
