@@ -431,6 +431,9 @@ nav a {
         padding: 8px 14px;
         font-size: 10px;
     }
+    .golo {
+      gap: 5px;
+    }
     .golo h2 {
         font-size: 16px; /* Shrink text slightly if it's too cramped */
     }
@@ -438,6 +441,41 @@ nav a {
     img {
         width: 30px; /* Smaller logo for mobile */
         height: 30px;
+    }
+
+    .eleven-container {
+        margin: 20px 10px; /* Reduces outer margin so it doesn't look squeezed */
+        border-radius: 15px; /* Softer corners for mobile */
+    }
+
+    .tabs-nav {
+        gap: 8px;
+        padding: 10px;
+        flex-wrap: wrap; /* Allows buttons to stack if the phone is very narrow */
+    }
+
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 12px; /* Smaller text to fit all 4 buttons */
+        flex: 1 1 auto; /* Helps buttons fill the row evenly */
+    }
+
+    .slide-item {
+        padding: 20px 15px; /* Reduced from 40px to give content more room */
+    }
+
+    .content-box {
+        width: 100%; /* Use full width of the slide-item */
+        padding: 20px; /* Smaller internal padding */
+        min-height: 250px; /* Adjust height for mobile screens */
+    }
+
+    .content-box h3 {
+        font-size: 20px;
+    }
+
+    .content-box p {
+        font-size: 14px;
     }
       
   }
@@ -775,5 +813,5 @@ animate();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   </body>
-  <?php include "../caps/pages/footer.php"; ?>
+  <?php include "../caps2n/pages/footer.php"; ?>
   </html>
