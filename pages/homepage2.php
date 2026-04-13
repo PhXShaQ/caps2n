@@ -380,18 +380,36 @@ nav a {
 
 
   .account-modal {
-    position: absolute;
-    top: 70px;
-    right: 5%;
-    width: 260px;
+    position: fixed;        /* 🔥 CHANGE THIS */
+    top: 80px;
+    right: 40px;            /* fixed pixel is better than % */
+    width: 280px;
     background: #1a1a1a;
     border-radius: 15px;
     padding: 20px;
-    z-index: 999;
+    z-index: 9999;          /* 🔥 higher than everything */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
 
 .hidden {
     display: none;
+}
+
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.profile-trigger {
+    cursor: pointer;
 }
 
 
