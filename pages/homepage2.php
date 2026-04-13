@@ -182,9 +182,9 @@ $initial = strtoupper(substr($userEmail, 0, 1));
 
     <div class="buttons">
       <a href="designhome.php" target="_blank" rel="noopener noreferrer">
-          <div class="buttons">
+          <div class="butto">
             <button class="secondary" onclick="openNewWindow()">Let get start</button>
-        </div>
+          </div>
       </a>
     </div>
   </div>
