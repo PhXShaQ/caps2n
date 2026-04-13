@@ -212,83 +212,7 @@ nav {
   }
 
   /* MOBILE SPECIFIC OVERRIDES */
-  @media (max-width: 768px) {
-    header {
-      display: flex;
-      flex-direction: row; 
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 5%;
-      flex-wrap: nowrap
-      
-    }
-
-    nav {
-      display: none;
-    }
-
-    .mega-menu {
-        display: none; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
-    }
-
-    .auth {
-        width: auto; /* Allow it to shrink to fit the buttons */
-        margin-top: 0;
-        display: flex;
-        gap: 8px;
-    }
-
-    .auth a {
-        padding: 8px 14px;
-        font-size: 10px;
-    }
-    .golo {
-      gap: 5px;
-    }
-    .golo h2 {
-        font-size: 16px; /* Shrink text slightly if it's too cramped */
-    }
-    
-    img {
-        width: 30px; /* Smaller logo for mobile */
-        height: 30px;
-    }
-
-    .eleven-container {
-        margin: 20px 10px; /* Reduces outer margin so it doesn't look squeezed */
-        border-radius: 15px; /* Softer corners for mobile */
-    }
-
-    .tabs-nav {
-        gap: 8px;
-        padding: 10px;
-        flex-wrap: wrap; /* Allows buttons to stack if the phone is very narrow */
-    }
-
-    .tab-btn {
-        padding: 8px 12px;
-        font-size: 12px; /* Smaller text to fit all 4 buttons */
-        flex: 1 1 auto; /* Helps buttons fill the row evenly */
-    }
-
-    .slide-item {
-        padding: 20px 15px; /* Reduced from 40px to give content more room */
-    }
-
-    .content-box {
-        width: 100%; /* Use full width of the slide-item */
-        padding: 20px; /* Smaller internal padding */
-        min-height: 250px; /* Adjust height for mobile screens */
-    }
-
-    .content-box h3 {
-        font-size: 20px;
-    }
-
-    .content-box p {
-        font-size: 14px;
-    }
-  }
+  
 
 
 
@@ -579,3 +503,81 @@ nav {
         position: relative;
         z-index: 1;
         }
+
+@media (max-width: 768px) {
+    header {
+      display: flex;
+      flex-direction: row; 
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 5%;
+      flex-wrap: nowrap
+      
+    }
+
+    nav {
+      display: none;
+    }
+
+    .mega-menu {
+        display: none; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
+    }
+
+    .auth {
+        width: auto; /* Allow it to shrink to fit the buttons */
+        margin-top: 0;
+        display: flex;
+        gap: 8px;
+    }
+
+    .auth a {
+        padding: 8px 14px;
+        font-size: 10px;
+    }
+    .golo {
+      gap: 5px;
+    }
+    .golo h2 {
+        font-size: 16px; /* Shrink text slightly if it's too cramped */
+    }
+    
+    img {
+        width: 30px; /* Smaller logo for mobile */
+        height: 30px;
+    }
+
+    .eleven-container {
+        margin: 20px 10px; /* Reduces outer margin so it doesn't look squeezed */
+        border-radius: 15px; /* Softer corners for mobile */
+    }
+
+    .tabs-nav {
+        gap: 8px;
+        padding: 10px;
+        flex-wrap: wrap; /* Allows buttons to stack if the phone is very narrow */
+    }
+
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 12px; /* Smaller text to fit all 4 buttons */
+        flex: 1 1 auto; /* Helps buttons fill the row evenly */
+    }
+
+    .slide-item {
+        padding: 20px 15px; /* Reduced from 40px to give content more room */
+    }
+
+    .content-box {
+        width: 100%; /* Use full width of the slide-item */
+        padding: 20px; /* Smaller internal padding */
+        min-height: 250px; /* Adjust height for mobile screens */
+    }
+
+    .content-box h3 {
+        font-size: 20px;
+    }
+
+    .content-box p {
+        font-size: 14px;
+    }
+  }
