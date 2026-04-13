@@ -646,7 +646,7 @@ nav a {
       <h1>The AI creative platform to bring your content to life</h1>
 
       <div class="buttons">
-        <a href="mycapstone/pages/registrationform.php">Lets Get Start</a>
+        <a href="designhome.php">Lets Get Start</a>
         
       </div>
     </div>
