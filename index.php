@@ -429,9 +429,9 @@ nav a {
 
     .auth a {
         padding: 8px 14px;
-        font-size: 12px;
+        font-size: 10px;
     }
-    .logo h2 {
+    .golo h2 {
         font-size: 16px; /* Shrink text slightly if it's too cramped */
     }
     
