@@ -404,6 +404,7 @@ nav a {
     header {
         justify-content: center;
         text-align: center;
+        display: flex;
     }
 
     nav {
@@ -420,6 +421,10 @@ nav a {
         justify-content: center;
         margin-top: 10px;
         
+    }
+
+    .slider-window {
+      width: 90%;
     }
     
   }
