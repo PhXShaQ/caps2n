@@ -28,7 +28,7 @@ header {
 
 nav a {
   margin: 0 15px;
-  color: #000000;
+  color: #ccc;
   text-decoration: none;
 }
 
@@ -339,7 +339,7 @@ nav {
 .nav-container {
   display: flex;
   position: relative;
-  background: white;
+  background: #0f0f0f;
   padding: 15px 40px;
   gap: 30px;
   align-items: center;
@@ -368,7 +368,7 @@ nav {
 
 .nav-item > a {
   text-decoration: none;
-  color: #333;
+  color: white;
   font-weight: 600;
   padding: 10px 15px;
 }
