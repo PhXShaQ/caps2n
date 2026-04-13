@@ -7,7 +7,7 @@
   <link rel="shortcut icon" href="logonam.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <canvas id="particles"></canvas>
-  
+<link rel="stylesheet" href="../css/homepage.css">
   </head>
   <body>
 
@@ -203,7 +203,7 @@
 </div>
 
 
-
+<script src="../script/homepage.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
