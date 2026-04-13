@@ -18,6 +18,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
 <link rel="shortcut icon" href="logonam.png" type="image/x-icon">
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/homepage.css">
 
 </head>
@@ -188,9 +189,36 @@ $initial = strtoupper(substr($userEmail, 0, 1));
     </div>
   </div>
 
-  <div class="hero-right">
-    Kevin's is a single platform to generate, edit, and localize premium audio and video in minutes. Powering millions of creators, marketing teams, and media companies worldwide.
-  </div>
+   <div class="hero-right">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          
+          <div class="carousel-item active">
+            <img src="../image1.jpg" class="d-block w-100" alt="Slide 1">
+          </div>
+
+          <div class="carousel-item">
+            <img src="../image1.jpg" class="d-block w-100" alt="Slide 2">
+          </div>
+
+          <div class="carousel-item">
+            <img src="../image1.jpg" class="d-block w-100" alt="Slide 3">
+          </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+
+      </div>
+    </div>
+
+
 </section>
 
 <div class="eleven-container">
@@ -240,6 +268,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
 </div>
 
 <script src="../script/homepage.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
   <?php include "../pages/footer.php"; ?>
