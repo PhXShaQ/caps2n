@@ -692,8 +692,32 @@ nav a {
     </div>
 </div>
 
+
+
+
 <script>
-  lucide.createIcons();
+
+    function slideTo(index) {
+      const track = document.getElementById('mainTrack');
+      const buttons = document.querySelectorAll('.tab-btn');
+
+      // 1. Move the track (100% / 4 slides = 25% movement per slide)
+      // Pero since container width ang usapan, move by -25% each step
+      const percentage = index * 25;
+      track.style.transform = `translateX(-${percentage}%)`;
+
+      // 2. Update Active Button Style
+      buttons.forEach((btn, i) => {
+          if (i === index) {
+              btn.classList.add('active');
+          } else {
+              btn.classList.remove('active');
+          }
+      });
+    }
+
+
+    lucide.createIcons();
     function toggleAccountModal() {
         const modal = document.getElementById('accountModal');
         modal.classList.toggle('hidden');
@@ -722,29 +746,6 @@ window.addEventListener("load", function () {
             window.location.href = url;
         }, 400);
     }
-</script>
-
-
-<script>
-
-    function slideTo(index) {
-    const track = document.getElementById('mainTrack');
-    const buttons = document.querySelectorAll('.tab-btn');
-
-    // 1. Move the track (100% / 4 slides = 25% movement per slide)
-    // Pero since container width ang usapan, move by -25% each step
-    const percentage = index * 25;
-    track.style.transform = `translateX(-${percentage}%)`;
-
-    // 2. Update Active Button Style
-    buttons.forEach((btn, i) => {
-        if (i === index) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
-}
 
 
 
