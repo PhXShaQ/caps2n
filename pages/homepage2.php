@@ -583,10 +583,27 @@ nav a {
 
   </nav>
   
-    <div class="auth">
-      <a href="pages/loginform.php">Login</a>
-      <a href="pages/registrationform.php">Sign-up</a>
+    <div class="profile-trigger" onclick="toggleAccountModal()">
+    <div class="avatar-circle"><?php echo $initial; ?></div>
+  </div>
+
+  <div id="accountModal" class="account-modal hidden">
+    <div class="modal-header">
+      <span><?php echo $userEmail; ?></span>
+      <button class="close-x" onclick="toggleAccountModal()">&times;</button>
     </div>
+
+    <div class="avatar-large"><?php echo $initial; ?></div>
+    <h2>Hi, User!</h2>
+    <a href="https://myaccount.google.com/" target="_blank" rel="noopener noreferrer" class="manage-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+    Manage your Google Account
+    <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+    </a>
+
+    <div class="account-actions">
+      <a href="logout.php" class="action-row">Sign out</a>
+    </div>
+  </div>
   </header>
 
   <section class="hero">
@@ -594,8 +611,8 @@ nav a {
       <h1>The AI creative platform to bring your content to life</h1>
 
       <div class="buttons">
-        <a href="mycapstone/pages/registrationform.php">Sign-up</a>
-        <button class="secondary">Contact sales</button>
+        <a href="mycapstone/pages/registrationform.php">Lets Get Start</a>
+        
       </div>
     </div>
 
@@ -813,5 +830,5 @@ animate();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   </body>
-  <?php include "pages/footer.php"; ?>
+  <?php include "../pages/footer.php"; ?>
   </html>
