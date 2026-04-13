@@ -583,7 +583,27 @@ nav a {
 
   </nav>
   
-    
+    <div class="profile-trigger" onclick="toggleAccountModal()">
+    <div class="avatar-circle"><?php echo $initial; ?></div>
+  </div>
+
+  <div id="accountModal" class="account-modal hidden">
+    <div class="modal-header">
+      <span><?php echo $userEmail; ?></span>
+      <button class="close-x" onclick="toggleAccountModal()">&times;</button>
+    </div>
+
+    <div class="avatar-large"><?php echo $initial; ?></div>
+    <h2>Hi, User!</h2>
+    <a href="https://myaccount.google.com/" target="_blank" rel="noopener noreferrer" class="manage-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+    Manage your Google Account
+    <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+    </a>
+
+    <div class="account-actions">
+      <a href="logout.php" class="action-row">Sign out</a>
+    </div>
+  </div>
   </header>
 
   <section class="hero">
@@ -674,6 +694,14 @@ nav a {
 
 
 <script>
+
+  lucide.createIcons();
+function toggleAccountModal() {
+    const modal = document.getElementById('accountModal');
+    modal.classList.toggle('hidden');
+}
+
+
     function slideTo(index) {
     const track = document.getElementById('mainTrack');
     const buttons = document.querySelectorAll('.tab-btn');
