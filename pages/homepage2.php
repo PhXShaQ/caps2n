@@ -400,97 +400,6 @@ nav a {
 
 
 
-
-
-  .profile-trigger {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.avatar-circle {
-  width: 40px;
-  height: 40px;
-  background: #3c4043;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  border: 2px solid transparent;
-  transition: 0.2s;
-}
-
-.profile-trigger:hover .avatar-circle {
-  border-color: #5d0bf5;
-}
-
-.account-modal {
-  position: absolute;
-  top: 75px;
-  right: 60px;
-  width: 320px;
-  background: #282a2d;
-  border-radius: 24px;
-  padding: 20px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  z-index: 1000;
-  text-align: center;
-}
-
-.hidden { 
-  display: none; 
-}
-
-.avatar-large {
-  width: 80px;
-  height: 80px;
-  background: #5d0bf5;
-  border-radius: 50%;
-  margin: 0 auto 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-}
-
-.manage-btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 8px 20px;
-  border: 1px solid #5f6368;
-  border-radius: 20px;
-  color: #8ab4f8;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.account-actions {
-  background: #1e1f20;
-  border-radius: 16px;
-  margin-top: 20px;
-  padding: 10px;
-}
-
-.action-row {
-  display: block;
-  padding: 12px;
-  color: #e3e3e3;
-  text-decoration: none;
-  text-align: left;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-
-.action-row:hover { 
-  background: #3c4043; 
-}
-
-
-
   @media (max-width: 768px) {
 
     header {
@@ -674,7 +583,27 @@ nav a {
 
   </nav>
   
-    
+    <div class="profile-trigger" onclick="toggleAccountModal()">
+    <div class="avatar-circle"><?php echo $initial; ?></div>
+  </div>
+
+  <div id="accountModal" class="account-modal hidden">
+    <div class="modal-header">
+      <span><?php echo $userEmail; ?></span>
+      <button class="close-x" onclick="toggleAccountModal()">&times;</button>
+    </div>
+
+    <div class="avatar-large"><?php echo $initial; ?></div>
+    <h2>Hi, User!</h2>
+    <a href="https://myaccount.google.com/" target="_blank" rel="noopener noreferrer" class="manage-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+    Manage your Google Account
+    <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+    </a>
+
+    <div class="account-actions">
+      <a href="logout.php" class="action-row">Sign out</a>
+    </div>
+  </div>
   </header>
 
   <section class="hero">
@@ -765,20 +694,7 @@ nav a {
 
 
 <script>
-    lucide.createIcons();
-    function toggleAccountModal() {
-        const modal = document.getElementById('accountModal');
-        modal.classList.toggle('hidden');
-    }
 
-    // Close when clicking outside
-    window.onclick = function(event) {
-        const modal = document.getElementById('accountModal');
-        const trigger = document.querySelector('.profile-trigger');
-        if (!modal.contains(event.target) && !trigger.contains(event.target)) {
-            modal.classList.add('hidden');
-        }
-    }
 
 
 
