@@ -624,24 +624,21 @@ nav a {
   </header>
 
   <div id="accountModal" class="account-modal hidden">
-  <div class="account-card">
-
-    <div class="avatar-large">
-      <?php echo $initial; ?>
+    <div class="modal-header">
+      <span><?php echo $userEmail; ?></span>
+      <button class="close-x" onclick="toggleAccountModal()">&times;</button>
     </div>
 
-    <h3 class="user-name">Kevin Angel User</h3>
-    <p class="user-email"><?php echo $userEmail; ?></p>
-
-    <a href="https://myaccount.google.com/" target="_blank" class="manage-btn">
-      Manage your Google Account
-      <span class="external-icon">↗</span>
+    <div class="avatar-large"><?php echo $initial; ?></div>
+    <h2>Hi, User!</h2>
+    <a href="https://myaccount.google.com/" target="_blank" rel="noopener noreferrer" class="manage-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+    Manage your Google Account
+    <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
     </a>
 
-    <a href="logout.php" class="logout-btn">
-      Sign Out
-    </a>
-
+    <div class="account-actions">
+      <a href="logout.php" class="action-row">Sign out</a>
+    </div>
   </div>
 
   <section class="hero">
