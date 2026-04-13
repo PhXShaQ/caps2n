@@ -695,13 +695,7 @@ nav a {
 
 <script>
 
-  lucide.createIcons();
-function toggleAccountModal() {
-    const modal = document.getElementById('accountModal');
-    modal.classList.toggle('hidden');
-}
-
-
+  
     function slideTo(index) {
     const track = document.getElementById('mainTrack');
     const buttons = document.querySelectorAll('.tab-btn');
