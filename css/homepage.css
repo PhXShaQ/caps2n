@@ -165,54 +165,54 @@ nav {
 }
 
 .column p:hover {
-    color: #fff;
+  color: #fff;
 }
 /*---------text--------*/
-  .hero {
-    display: flex;
-    justify-content: space-between;
-    padding: 60px 5%;
-    flex-wrap: wrap; /* CRITICAL FOR MOBILE */
-    gap: 40px;
-  }
+.hero {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 5%;
+  flex-wrap: wrap; /* CRITICAL FOR MOBILE */
+  gap: 40px;
+}
 
-  .hero-left {
-    max-width: 100%; /* Changed from 55% */
-    flex: 1 1 500px; /* Grows but stays base-size */
-  }
+.hero-left {
+  max-width: 100%; /* Changed from 55% */
+  flex: 1 1 500px; /* Grows but stays base-size */
+}
 
-  .hero-left h1 {
-    font-size: clamp(32px, 8vw, 60px); /* Adjusts size based on screen */
-    line-height: 1.1;
-  }
+.hero-left h1 {
+  font-size: clamp(32px, 8vw, 60px); /* Adjusts size based on screen */
+  line-height: 1.1;
+}
 
-  .hero-right {
-    max-width: 100%;
-    flex: 1 1 300px;
-    color: #ccc;
-    line-height: 1.6;
-  }
+.hero-right {
+  max-width: 100%;
+  flex: 1 1 300px;
+  color: #ccc;
+  line-height: 1.6;
+}
 
-  .cards {
-    display: flex;
-    gap: 20px;
-    padding: 40px 5%;
-    flex-wrap: wrap; /* Stacks cards on mobile */
-  }
+.cards {
+  display: flex;
+  gap: 20px;
+  padding: 40px 5%;
+  flex-wrap: wrap; /* Stacks cards on mobile */
+}
 
-  .card {
-    flex: 1 1 280px; /* Minimum width of 280px before stacking */
-    height: 200px;
-    background: #1c1c1c;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #888;
-  }
+.card {
+  flex: 1 1 280px; /* Minimum width of 280px before stacking */
+  height: 200px;
+  background: #1c1c1c;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
 
-  /* MOBILE SPECIFIC OVERRIDES */
-  
+/* MOBILE SPECIFIC OVERRIDES */
+
 
 
 
@@ -221,95 +221,95 @@ nav {
 
 /*--------------------------------*/
 
-  /* make dropdown align nicely per item */
+/* make dropdown align nicely per item */
 
 
 .profile-trigger {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  .avatar-circle {
-    width: 40px;
-    height: 40px;
-    background: #3c4043;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    border: 2px solid transparent;
-    transition: 0.2s;
-  }
+.avatar-circle {
+  width: 40px;
+  height: 40px;
+  background: #3c4043;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 2px solid transparent;
+  transition: 0.2s;
+}
 
-  .profile-trigger:hover .avatar-circle {
-    border-color: #5d0bf5;
-  }
+.profile-trigger:hover .avatar-circle {
+  border-color: #5d0bf5;
+}
 
-  .account-modal {
-    position: absolute;
-    top: 75px;
-    right: 60px;
-    width: 320px;
-    background: #282a2d;
-    border-radius: 24px;
-    padding: 20px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-    z-index: 1000;
-    text-align: center;
-  }
+.account-modal {
+  position: absolute;
+  top: 75px;
+  right: 60px;
+  width: 320px;
+  background: #282a2d;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  z-index: 1000;
+  text-align: center;
+}
 
-  .hidden { 
-    display: none; 
-  }
+.hidden { 
+  display: none; 
+}
 
-  .avatar-large {
-    width: 80px;
-    height: 80px;
-    background: #5d0bf5;
-    border-radius: 50%;
-    margin: 0 auto 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-  }
+.avatar-large {
+  width: 80px;
+  height: 80px;
+  background: #5d0bf5;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
 
-  .manage-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 8px 20px;
-    border: 1px solid #5f6368;
-    border-radius: 20px;
-    color: #8ab4f8;
-    text-decoration: none;
-    font-size: 14px;
-  }
+.manage-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 20px;
+  border: 1px solid #5f6368;
+  border-radius: 20px;
+  color: #8ab4f8;
+  text-decoration: none;
+  font-size: 14px;
+}
 
-  .account-actions {
-    background: #1e1f20;
-    border-radius: 16px;
-    margin-top: 20px;
-    padding: 10px;
-  }
+.account-actions {
+  background: #1e1f20;
+  border-radius: 16px;
+  margin-top: 20px;
+  padding: 10px;
+}
 
-  .action-row {
-    display: block;
-    padding: 12px;
-    color: #e3e3e3;
-    text-decoration: none;
-    text-align: left;
-    border-radius: 8px;
-    font-size: 14px;
-  }
+.action-row {
+  display: block;
+  padding: 12px;
+  color: #e3e3e3;
+  text-decoration: none;
+  text-align: left;
+  border-radius: 8px;
+  font-size: 14px;
+}
 
 
-  .action-row:hover { 
-    background: #3c4043; 
-  }
+.action-row:hover { 
+  background: #3c4043; 
+}
 
 
 
@@ -366,7 +366,7 @@ nav {
   gap: 10px;
   pointer-events: none;
   z-index: 100;
-  
+
   /* Animation Properties */
   opacity: 0;
   visibility: hidden;
@@ -497,27 +497,28 @@ nav {
   height: 100%;
   z-index: -1;
   background: #0f172a; /* dark background */
-  }
+}
 
-  .dashboard-content {
+.dashboard-content {
   position: relative;
   z-index: 1;
 }
 
 @media (max-width: 768px) {
   header {
-    display: flex;
-    flex-direction: row; 
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5%;
-    flex-wrap: nowrap
+    display: flex !important;
+    flex-direction: row !important; 
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 15px !important;
+    flex-wrap: nowrap !important; /* Forces the line */
     
   }
 
   .profile-trigger {
     display: flex;
     width: auto;
+    flex-shrink: 0;
   }
 
   .avatar-circle {
@@ -530,11 +531,11 @@ nav {
   }
 
   nav {
-    display: none;
+    display: none !important;
   }
 
   .mega-menu {
-    display: none; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
+    display: none !important; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
   }
 
   .auth {
@@ -549,7 +550,8 @@ nav {
     font-size: 10px;
   }
   .golo {
-    gap: 5px;
+    flex-shrink: 1;
+    justify-content: flex-start;
   }
   .golo h2 {
     font-size: 16px; /* Shrink text slightly if it's too cramped */
@@ -593,5 +595,11 @@ nav {
 
   .content-box p {
     font-size: 14px;
+  }
+
+  .account-modal {
+    width: 280px;
+    right: 10px;
+    top: 60px;
   }
 }
