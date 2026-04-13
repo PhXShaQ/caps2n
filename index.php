@@ -278,8 +278,7 @@ nav a {
     }
 
     nav {
-        justify-content: center;
-        width: 100%;
+      display: none;
     }
 
     .mega-menu {
