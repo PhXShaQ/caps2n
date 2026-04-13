@@ -432,95 +432,6 @@ nav a {
   }
 
 
-  /* ===== ACCOUNT MODAL ===== */
-
-.account-modal {
-  position: fixed;
-  top: 90px;
-  right: 40px;
-  z-index: 9999;
-}
-
-.account-card {
-  width: 340px;
-  background: linear-gradient(145deg, #0f172a, #1e293b);
-  border-radius: 25px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-/* Avatar */
-.avatar-large {
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 15px;
-  background: linear-gradient(135deg, #7c3aed, #6366f1);
-  color: white;
-  font-size: 36px;
-  font-weight: bold;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Name */
-.user-name {
-  margin: 10px 0 5px;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-/* Email */
-.user-email {
-  color: #9ca3af;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-/* Manage Button */
-.manage-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding: 12px;
-  border-radius: 30px;
-  border: 1px solid #7c3aed;
-  color: #a78bfa;
-  text-decoration: none;
-  margin-bottom: 20px;
-  transition: 0.3s;
-}
-
-.manage-btn:hover {
-  background: rgba(124,58,237,0.1);
-}
-
-/* Logout Button */
-.logout-btn {
-  display: block;
-  padding: 14px;
-  border-radius: 15px;
-  background: linear-gradient(135deg, #7f1d1d, #991b1b);
-  color: #ff4d4d;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.logout-btn:hover {
-  background: #b91c1c;
-}
-
-/* Hidden class */
-.hidden {
-  display: none;
-}
-
-
 
   @media (max-width: 768px) {
 
@@ -709,6 +620,9 @@ nav a {
     <div class="avatar-circle"><?php echo $initial; ?></div>
   </div>
 
+  
+  </header>
+
   <div id="accountModal" class="account-modal hidden">
   <div class="account-card">
 
@@ -728,12 +642,7 @@ nav a {
       Sign Out
     </a>
 
-  </div>s
-
-  
-  </header>
-
-  
+  </div>
 
   <section class="hero">
     <div class="hero-left">
