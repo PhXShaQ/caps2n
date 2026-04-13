@@ -486,7 +486,7 @@ nav a {
 
   <header>
     <div class="golo">
-      <img src="logonam.png"/>
+      <img src="../logonam.png" alt="logo"/>
       <h2>Kevin's Angel</h2>
     </div>
 
