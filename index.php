@@ -271,29 +271,6 @@ nav a {
       color: #888;
   }
 
-  @media (max-width: 768px) {
-    header {
-        justify-content: center;
-        text-align: center;
-    }
-
-    nav {
-      display: none;
-    }
-
-    .mega-menu {
-        display: none; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
-    }
-
-    .auth {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-        
-    }
-    
-  }
 
   /* COLUMNS */
   .column {
@@ -420,6 +397,32 @@ nav a {
         position: relative;
         z-index: 1;
         }
+
+
+
+          @media (max-width: 768px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .mega-menu {
+        display: none; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
+    }
+
+    .auth {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        
+    }
+    
+  }
   </style>
   
   </head>
