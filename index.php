@@ -424,7 +424,7 @@ nav a {
     }
 
     .slider-window {
-      width: 90%;
+      width: 60%;
     }
     
   }
