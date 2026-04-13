@@ -384,27 +384,32 @@ nav a {
 
 
  #particles {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: #0f172a; /* dark background */
-        }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #0f172a; /* dark background */
+  }
 
-        .dashboard-content {
-        position: relative;
-        z-index: 1;
-        }
+  .dashboard-content {
+    position: relative;
+    z-index: 1;
+  }
 
 
 
-          @media (max-width: 768px) {
+  @media (max-width: 768px) {
+
     header {
-        justify-content: center;
-        text-align: center;
-        display: flex;
+      display: flex;
+      flex-direction: row; 
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 5%;
+      flex-wrap: nowrap
+      
     }
 
     nav {
@@ -416,17 +421,25 @@ nav a {
     }
 
     .auth {
-        width: 100%;
+        width: auto; /* Allow it to shrink to fit the buttons */
+        margin-top: 0;
         display: flex;
-        justify-content: center;
-        margin-top: 10px;
-        
+        gap: 8px;
     }
 
-    .slider-window {
-      width: 60%;
+    .auth a {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+    .logo h2 {
+        font-size: 16px; /* Shrink text slightly if it's too cramped */
     }
     
+    img {
+        width: 30px; /* Smaller logo for mobile */
+        height: 30px;
+    }
+      
   }
   </style>
   
