@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Creative Platform</title>
   <link rel="shortcut icon" href="logonam.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
    <canvas id="particles"></canvas>
   <style>
        * {
@@ -136,10 +137,10 @@
       }
 
       .hero-right {
-      max-width: 35%;
-      color: #ccc;
-      line-height: 1.6;
-      }
+      flex: 1 1 400px;
+      display: flex;
+      justify-content: center;
+          }
       
     .golo {
         display: flex;
@@ -216,11 +217,37 @@
         }
 
         .hero-right {
-            max-width: 100%;
-            flex: 1 1 300px;
-            color: #ccc;
-            line-height: 1.6;
+            flex: 1 1 600px;   /* allows it to grow */
+            display: flex;
+            justify-content: center;
         }
+
+        .hero-right .carousel {
+          width: 100%;
+          max-width: 500px;   /* control width */
+           box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .hero-right .carousel-inner {
+          height: 300px;      /* control height */
+        }
+
+        .hero-right .carousel-item {
+          height: 300px;
+        }
+
+        .hero-right .carousel-item img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;  /* VERY IMPORTANT */
+          border-radius: 15px;
+        }
+
+        .hero-left,
+.hero-right {
+  flex: 1 1 500px;
+}
+
 
         .cards {
             display: flex;
@@ -376,7 +403,9 @@
 
 
 
-#particles {
+
+
+ #particles {
         position: fixed;
         top: 0;
         left: 0;
@@ -495,8 +524,8 @@
   </nav>
   
     <div class="auth">
-      <a href="pages/loginform.php">Login</a>
-      <a href="pages/registrationform.php">Sign-up</a>
+      <a href="../caps/pages/loginform.php">Login</a>
+      <a href="../caps/pages/registrationform.php">Sign-up</a>
     </div>
   </header>
 
@@ -505,13 +534,38 @@
       <h1>The AI creative platform to bring your content to life</h1>
 
       <div class="buttons">
-        <a href="caps2n/pages/registrationform.php">Sign-up</a>
+        <a href="mycapstone/pages/registrationform.php">Sign-up</a>
         <button class="secondary">Contact sales</button>
       </div>
     </div>
 
     <div class="hero-right">
-      Kevin's meeting Creative is a single platform to generate, edit, and localize premium audio and video in minutes. Powering millions of creators, marketing teams, and media companies worldwide.
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          
+          <div class="carousel-item active">
+            <img src="image1.jpg" class="d-block w-100" alt="Slide 1">
+          </div>
+
+          <div class="carousel-item">
+            <img src="image1.jpg" class="d-block w-100" alt="Slide 2">
+          </div>
+
+          <div class="carousel-item">
+            <img src="image1.jpg" class="d-block w-100" alt="Slide 3">
+          </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+
+      </div>
     </div>
   </section>
   
@@ -581,7 +635,6 @@
         }
     });
 }
-
 
 
 
@@ -691,8 +744,14 @@ function animate() {
 
 init();
 animate();
+
+
+
+
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   </body>
-  <?php include "pages/footer.php"; ?>
+  <?php include "../caps/pages/footer.php"; ?>
   </html>
