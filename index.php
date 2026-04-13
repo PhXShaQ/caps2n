@@ -8,42 +8,42 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
    <canvas id="particles"></canvas>
   <style>
-       * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-      }
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
 
-      body {
-        background: #0f0f0f;
-        color: white;
-        overflow-x: hidden;
-      }
+  body {
+    background: #0f0f0f;
+    color: white;
+    overflow-x: hidden;
+  }
 
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 5%;
-        flex-wrap: wrap; 
-        gap: 20px;
-      }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    flex-wrap: wrap; 
+    gap: 20px;
+  }
 
-      .logo {
-      font-weight: bold;
-      font-size: 20px;
-      }
+  .logo {
+  font-weight: bold;
+  font-size: 20px;
+  }
 
-      nav a {
-      margin: 0 15px;
-      color: #ccc;
-      text-decoration: none;
-      }
+  nav a {
+  margin: 0 15px;
+  color: #ccc;
+  text-decoration: none;
+  }
 
-      nav a:hover {
-      color: white;
-      }
+  nav a:hover {
+  color: white;
+  }
 
      
 .auth {
@@ -83,282 +83,284 @@
     transform: scale(1.05);
 }
 
-      .login {
-      background: transparent;
-      color: white;
-      }
-
-      .signup {
-      background: white;
-      color: black;
-      }
-
-      .hero {
-      display: flex;
-      justify-content: space-between;
-      padding: 80px 60px;
-      }
-
-      .hero-left {
-      max-width: 55%;
-      }
-
-      .hero-left h1 {
-      font-size: 60px;
-      line-height: 1.1;
-      }
-
-      .hero-left p {
-      margin-top: 20px;
-      color: #aaa;
-      }
-
-      .buttons {
-      margin-top: 30px;
-      
-      }
-
-      .buttons button {
-      padding: 12px 24px;
-      border-radius: 25px;
-      border: none;
-      margin-right: 10px;
-      cursor: pointer;
-      }
-
-      .primary {
-      background: white;
-      color: black;
-      }
-
-      .secondary {
-      background: #1f1f1f;
-      color: white;
-      }
-
-      .hero-right {
-      flex: 1 1 400px;
-      display: flex;
-      justify-content: center;
-          }
-      
-    .golo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      img {
-        width: 40px;
-        height: 40px;
-      }
-
-      /* NAV FIX */
-      nav {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-      }
-
-      /* NAV ITEM */
-      .nav-item {
-        position: relative;
-        padding-bottom: 10px;
-      }
-
-      nav a {
-        color: #ccc;
-        text-decoration: none;
-        font-size: 14px;
-      }
-
-      /* MEGA MENU */
-      .mega-menu {
-        position: absolute;
-        top: 40px;
-        left: 0;
-        width: 250px; /* Reduced fixed width for desktop */
-        background: #1a1a1a;
-        padding: 20px;
-        border-radius: 12px;
-        display: flex;
-        flex-direction: column; /* Stack columns by default */
-        gap: 15px;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: 0.3s ease;
-        z-index: 100;
-        border: 1px solid #333;
-      }
-
-      /* SHOW ON HOVER */
-      .nav-item:hover .mega-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-      .hero {
-            display: flex;
-            justify-content: space-between;
-            padding: 60px 5%;
-            flex-wrap: wrap; /* CRITICAL FOR MOBILE */
-            gap: 40px;
-        }
-
-        .hero-left {
-            max-width: 100%; /* Changed from 55% */
-            flex: 1 1 500px; /* Grows but stays base-size */
-        }
-
-        .hero-left h1 {
-            font-size: clamp(32px, 8vw, 60px); /* Adjusts size based on screen */
-            line-height: 1.1;
-        }
-
-        .hero-right {
-            flex: 1 1 600px;   /* allows it to grow */
-            display: flex;
-            justify-content: center;
-        }
-
-        .hero-right .carousel {
-          width: 100%;
-          max-width: 500px;   /* control width */
-           box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-
-        .hero-right .carousel-inner {
-          height: 300px;      /* control height */
-        }
-
-        .hero-right .carousel-item {
-          height: 300px;
-        }
-
-        .hero-right .carousel-item img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;  /* VERY IMPORTANT */
-          border-radius: 15px;
-        }
-
-        .hero-left,
-.hero-right {
-  flex: 1 1 500px;
+.login {
+background: transparent;
+color: white;
 }
 
+.signup {
+background: white;
+color: black;
+}
 
-        .cards {
-            display: flex;
-            gap: 20px;
-            padding: 40px 5%;
-            flex-wrap: wrap; /* Stacks cards on mobile */
-        }
+.hero {
+display: flex;
+justify-content: space-between;
+padding: 80px 60px;
+}
 
-        .card {
-            flex: 1 1 280px; /* Minimum width of 280px before stacking */
-            height: 200px;
-            background: #1c1c1c;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-        }
+.hero-left {
+max-width: 55%;
+}
 
-          
+.hero-left h1 {
+font-size: 60px;
+line-height: 1.1;
+}
 
-        @media (max-width: 768px) {
-            header {
-                justify-content: center;
-                text-align: center;
-            }
+.hero-left p {
+margin-top: 20px;
+color: #aaa;
+}
 
-            nav {
-                justify-content: center;
-                width: 100%;
-            }
+.buttons {
+margin-top: 30px;
 
-            .mega-menu {
-                display: none; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
-            }
+}
 
-            .auth {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                margin-top: 10px;
-                
-            }
-          
-        }
+.buttons button {
+padding: 12px 24px;
+border-radius: 25px;
+border: none;
+margin-right: 10px;
+cursor: pointer;
+}
 
-      /* COLUMNS */
-      .column {
-        flex: 1;
-      }
+.primary {
+background: white;
+color: black;
+}
 
-      .column h4 {
-        margin-bottom: 10px;
-        color: #aaa;
-        font-size: 14px;
-      }
+.secondary {
+background: #1f1f1f;
+color: white;
+}
 
-      .column p {
-        margin: 8px 0;
-        font-size: 13px;
-        color: #ccc;
-        cursor: pointer;
-        transition: 0.2s;
-      }
+.hero-right {
+flex: 1 1 400px;
+display: flex;
+justify-content: center;
+    }
 
-      .column p:hover {
-        color: white;
-        transform: translateX(5px);
-      }
+.golo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-      nav {
+img {
+  width: 40px;
+  height: 40px;
+}
+
+h2 {
+  font-family: Arial, sans-serif;
+}
+
+/* NAV FIX */
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* NAV ITEM */
+.nav-item {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* MEGA MENU */
+.mega-menu {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 250px; /* Reduced fixed width for desktop */
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column; /* Stack columns by default */
+  gap: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.3s ease;
+  z-index: 100;
+  border: 1px solid #333;
+}
+
+/* SHOW ON HOVER */
+.nav-item:hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.hero {
+      display: flex;
+      justify-content: space-between;
+      padding: 60px 5%;
+      flex-wrap: wrap; /* CRITICAL FOR MOBILE */
+      gap: 40px;
+  }
+
+  .hero-left {
+      max-width: 100%; /* Changed from 55% */
+      flex: 1 1 500px; /* Grows but stays base-size */
+  }
+
+  .hero-left h1 {
+      font-size: clamp(32px, 8vw, 60px); /* Adjusts size based on screen */
+      line-height: 1.1;
+  }
+
+  .hero-right {
+      flex: 1 1 600px;   /* allows it to grow */
+      display: flex;
+      justify-content: center;
+  }
+
+  .hero-right .carousel {
+    width: 100%;
+    max-width: 500px;   /* control width */
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .hero-right .carousel-inner {
+    height: 300px;      /* control height */
+  }
+
+  .hero-right .carousel-item {
+    height: 300px;
+  }
+
+  .hero-right .carousel-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;  /* VERY IMPORTANT */
+    border-radius: 15px;
+  }
+
+  .hero-left,
+  .hero-right {
+    flex: 1 1 500px;
+  }
+
+
+  .cards {
+      display: flex;
+      gap: 20px;
+      padding: 40px 5%;
+      flex-wrap: wrap; /* Stacks cards on mobile */
+  }
+
+  .card {
+      flex: 1 1 280px; /* Minimum width of 280px before stacking */
+      height: 200px;
+      background: #1c1c1c;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+  }
+
+  @media (max-width: 768px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .mega-menu {
+        display: none; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
+    }
+
+    .auth {
+        width: 100%;
         display: flex;
-        gap: 20px;
-        position: relative;
-      }
+        justify-content: center;
+        margin-top: 10px;
+        
+    }
+    
+  }
 
-      .nav-item {
-        position: relative;
-      }
+  /* COLUMNS */
+  .column {
+    flex: 1;
+  }
 
-      /* make dropdown align nicely per item */
-      .mega-menu {
-        position: absolute;
-        top: 40px;
-        left: 0;
-        min-width: 300px;
-      }
-      .nav-item {
-        padding-bottom: 10px;
-      }
-      
-     /* slide */
-     
-     .eleven-container {
+  .column h4 {
+    margin-bottom: 10px;
+    color: #aaa;
+    font-size: 14px;
+  }
+
+  .column p {
+    margin: 8px 0;
+    font-size: 13px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .column p:hover {
+    color: white;
+    transform: translateX(5px);
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+    position: relative;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  /* make dropdown align nicely per item */
+  .mega-menu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    min-width: 300px;
+  }
+  .nav-item {
+    padding-bottom: 10px;
+  }
+  
+  /* slide */
+  
+  .eleven-container {
     max-width: 1000px;
     margin: 50px auto;
     background: #181a1b;
     border-radius: 24px;
     overflow: hidden;
     padding-bottom: 30px;
-}
+  }
 
-.tabs-nav {
+  .tabs-nav {
     display: flex;
     justify-content: center;
     gap: 15px;
     padding: 20px;
     background: rgba(0,0,0,0.2);
-}
+  }
 
-.tab-btn {
+  .tab-btn {
     background: transparent;
     border: none;
     color: #888;
@@ -366,39 +368,39 @@
     padding: 10px 20px;
     border-radius: 20px;
     transition: 0.3s;
-}
+  }
 
-.tab-btn.active {
+  .tab-btn.active {
     background: #fff;
     color: #000;
-}
+  }
 
-/* SLIDER LOGIC */
-.slider-window {
+  /* SLIDER LOGIC */
+  .slider-window {
     width: 100%;
     overflow: hidden; /* Itatago ang ibang slides */
-}
+  }
 
-.slider-track {
-    display: flex;
-    width: 400%; /* 4 slides = 400% */
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide */
-}
+  .slider-track {
+      display: flex;
+      width: 400%; /* 4 slides = 400% */
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide */
+  }
 
-.slide-item {
-    width: 100%; /* Isang slide ay kakain ng buong window width */
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-}
+  .slide-item {
+      width: 100%; /* Isang slide ay kakain ng buong window width */
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+  }
 
-.content-box {
-    background: #222;
-    width: 90%;
-    padding: 40px;
-    border-radius: 20px;
-    min-height: 300px;
-}
+  .content-box {
+      background: #222;
+      width: 90%;
+      padding: 40px;
+      border-radius: 20px;
+      min-height: 300px;
+  }
 
 
 
@@ -524,8 +526,8 @@
   </nav>
   
     <div class="auth">
-      <a href="../caps/pages/loginform.php">Login</a>
-      <a href="../caps/pages/registrationform.php">Sign-up</a>
+      <a href="pages/loginform.php">Login</a>
+      <a href="pages/registrationform.php">Sign-up</a>
     </div>
   </header>
 
