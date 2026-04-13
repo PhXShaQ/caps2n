@@ -21,14 +21,7 @@
     overflow-x: hidden;
   }
 
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    flex-wrap: wrap; 
-    gap: 20px;
-  }
+  
 
   .logo {
   font-weight: bold;
@@ -389,15 +382,47 @@ nav a {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    background: #0f172a; /* dark background */
+    z-index: -1; /* Behind everything */
+    background: #0f172a;
+    pointer-events: none; /* CRITICAL: Allows clicks to pass through to buttons */
   }
 
   .dashboard-content {
     position: relative;
     z-index: 1;
   }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    flex-wrap: wrap; 
+    gap: 20px;
+    position: relative;
+    z-index: 1000;
+  }
 
+  .account-modal {
+    position: absolute;
+    top: 80px;
+    right: 5%;
+    width: 300px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    z-index: 1001; /* Higher than header */
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.profile-trigger {
+    cursor: pointer;
+    z-index: 1002;
+}
 
 
   @media (max-width: 768px) {
@@ -583,9 +608,9 @@ nav a {
 
   </nav>
   
-    <div class="profile-trigger" onclick="toggleAccountModal()">
+    <div class="profile-trigger" onclick="toggleAccountModal(event)">
     <div class="avatar-circle"><?php echo $initial; ?></div>
-  </div>
+</div>
 
   <div id="accountModal" class="account-modal hidden">
     <div class="modal-header">
@@ -718,10 +743,12 @@ nav a {
 
 
     lucide.createIcons();
-    function toggleAccountModal() {
-        const modal = document.getElementById('accountModal');
-        modal.classList.toggle('hidden');
-    }
+    function toggleAccountModal(event) {
+    // Prevent the click from bubbling up to window.onclick immediately
+    if (event) event.stopPropagation(); 
+    const modal = document.getElementById('accountModal');
+    modal.classList.toggle('hidden');
+}
 
     // Close when clicking outside
     window.onclick = function(event) {
@@ -732,20 +759,30 @@ nav a {
         }
     }
 
-window.addEventListener("load", function () {
-        document.body.style.opacity = "1";
-        document.body.style.transform = "translateY(0)";
-    });
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('accountModal');
+    const trigger = document.querySelector('.profile-trigger');
 
-    // Smooth page transition
-    function navigateTo(url) {
-        document.body.style.opacity = "0";
-        document.body.style.transform = "translateY(15px)";
-        
-        setTimeout(function () {
-            window.location.href = url;
-        }, 400);
+    // If modal is open AND click is NOT inside modal AND click is NOT on the trigger
+    if (!modal.classList.contains('hidden')) {
+        if (!modal.contains(event.target) && !trigger.contains(event.target)) {
+            modal.classList.add('hidden');
+        }
     }
+});
+
+// 3. Update Mouse for Particles (Stop tracking if modal is open)
+window.addEventListener("mousemove", function (event) {
+    const modal = document.getElementById('accountModal');
+    if (modal && modal.classList.contains('hidden')) {
+        mouse.x = event.x;
+        mouse.y = event.y;
+    } else {
+        // Move mouse influence away so particles don't "vibrate" under the modal
+        mouse.x = undefined;
+        mouse.y = undefined;
+    }
+});
 
 
 
