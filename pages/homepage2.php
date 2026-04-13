@@ -21,7 +21,14 @@
     overflow-x: hidden;
   }
 
-  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    flex-wrap: wrap; 
+    gap: 20px;
+  }
 
   .logo {
   font-weight: bold;
@@ -382,47 +389,15 @@ nav a {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Behind everything */
-    background: #0f172a;
-    pointer-events: none; /* CRITICAL: Allows clicks to pass through to buttons */
+    z-index: -1;
+    background: #0f172a; /* dark background */
   }
 
   .dashboard-content {
     position: relative;
     z-index: 1;
   }
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    flex-wrap: wrap; 
-    gap: 20px;
-    position: relative;
-    z-index: 1000;
-  }
 
-  .account-modal {
-    position: absolute;
-    top: 80px;
-    right: 5%;
-    width: 300px;
-    background: #1a1a1a;
-    border-radius: 12px;
-    padding: 20px;
-    z-index: 1001; /* Higher than header */
-    border: 1px solid #333;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.hidden {
-    display: none !important;
-}
-
-.profile-trigger {
-    cursor: pointer;
-    z-index: 1002;
-}
 
 
   @media (max-width: 768px) {
@@ -608,9 +583,9 @@ header {
 
   </nav>
   
-    <div class="profile-trigger" onclick="toggleAccountModal(event)">
+    <div class="profile-trigger" onclick="toggleAccountModal()">
     <div class="avatar-circle"><?php echo $initial; ?></div>
-</div>
+  </div>
 
   <div id="accountModal" class="account-modal hidden">
     <div class="modal-header">
@@ -718,71 +693,25 @@ header {
 </div>
 
 
-
-
 <script>
-
     function slideTo(index) {
-      const track = document.getElementById('mainTrack');
-      const buttons = document.querySelectorAll('.tab-btn');
+    const track = document.getElementById('mainTrack');
+    const buttons = document.querySelectorAll('.tab-btn');
 
-      // 1. Move the track (100% / 4 slides = 25% movement per slide)
-      // Pero since container width ang usapan, move by -25% each step
-      const percentage = index * 25;
-      track.style.transform = `translateX(-${percentage}%)`;
+    // 1. Move the track (100% / 4 slides = 25% movement per slide)
+    // Pero since container width ang usapan, move by -25% each step
+    const percentage = index * 25;
+    track.style.transform = `translateX(-${percentage}%)`;
 
-      // 2. Update Active Button Style
-      buttons.forEach((btn, i) => {
-          if (i === index) {
-              btn.classList.add('active');
-          } else {
-              btn.classList.remove('active');
-          }
-      });
-    }
-
-
-    lucide.createIcons();
-    function toggleAccountModal(event) {
-    // Prevent the click from bubbling up to window.onclick immediately
-    if (event) event.stopPropagation(); 
-    const modal = document.getElementById('accountModal');
-    modal.classList.toggle('hidden');
+    // 2. Update Active Button Style
+    buttons.forEach((btn, i) => {
+        if (i === index) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
 }
-
-    // Close when clicking outside
-    window.onclick = function(event) {
-        const modal = document.getElementById('accountModal');
-        const trigger = document.querySelector('.profile-trigger');
-        if (modal && !modal.contains(event.target) && !trigger.contains(event.target)) {
-            modal.classList.add('hidden');
-        }
-    }
-
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('accountModal');
-    const trigger = document.querySelector('.profile-trigger');
-
-    // If modal is open AND click is NOT inside modal AND click is NOT on the trigger
-    if (!modal.classList.contains('hidden')) {
-        if (!modal.contains(event.target) && !trigger.contains(event.target)) {
-            modal.classList.add('hidden');
-        }
-    }
-});
-
-// 3. Update Mouse for Particles (Stop tracking if modal is open)
-window.addEventListener("mousemove", function (event) {
-    const modal = document.getElementById('accountModal');
-    if (modal && modal.classList.contains('hidden')) {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    } else {
-        // Move mouse influence away so particles don't "vibrate" under the modal
-        mouse.x = undefined;
-        mouse.y = undefined;
-    }
-});
 
 
 
