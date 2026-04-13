@@ -379,6 +379,21 @@ nav a {
   }
 
 
+  .account-modal {
+    position: absolute;
+    top: 70px;
+    right: 5%;
+    width: 260px;
+    background: #1a1a1a;
+    border-radius: 15px;
+    padding: 20px;
+    z-index: 999;
+}
+
+.hidden {
+    display: none;
+}
+
 
 
 
@@ -823,6 +838,22 @@ function animate() {
 
 init();
 animate();
+
+
+
+function toggleAccountModal() {
+    const modal = document.getElementById('accountModal');
+    modal.classList.toggle('hidden');
+}
+
+window.addEventListener("click", function(event) {
+    const modal = document.getElementById('accountModal');
+    const trigger = document.querySelector('.profile-trigger');
+
+    if (!modal.contains(event.target) && !trigger.contains(event.target)) {
+        modal.classList.add('hidden');
+    }
+});
 
 
 
