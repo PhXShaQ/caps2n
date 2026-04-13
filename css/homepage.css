@@ -608,7 +608,11 @@ nav {
         border-radius: 15px;
         overflow: hidden;
       
-      }
+      .hero-right .carousel-item img {
+        height: 250px !important; /* Must match the container height */
+        object-fit: cover; /* This prevents the 'squished' look */
+        width: 100%;
+    }}
 
   
 }
