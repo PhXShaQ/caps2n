@@ -1,15 +1,3 @@
-  <?php
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: loginform.php");
-    exit();
-}
-
-$userEmail = $_SESSION['email'] ?? 'User';
-$initial = strtoupper(substr($userEmail, 0, 1));
-?>
-
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -20,477 +8,477 @@ $initial = strtoupper(substr($userEmail, 0, 1));
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
    <canvas id="particles"></canvas>
   <style>
-        * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-        }
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
 
-      body {
-        background: #0f0f0f;
-        color: white;
-        overflow-x: hidden;
-      }
+  body {
+    background: #0f0f0f;
+    color: white;
+    overflow-x: hidden;
+  }
 
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 5%;
-        flex-wrap: wrap; 
-        gap: 20px;
-      }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    flex-wrap: wrap; 
+    gap: 20px;
+  }
 
-      .logo {
-      font-weight: bold;
-      font-size: 20px;
-      }
+  .logo {
+  font-weight: bold;
+  font-size: 20px;
+  }
 
-      nav a {
-      margin: 0 15px;
-      color: #ccc;
-      text-decoration: none;
-      }
+  nav a {
+  margin: 0 15px;
+  color: #ccc;
+  text-decoration: none;
+  }
 
-      nav a:hover {
-      color: white;
-      }
+  nav a:hover {
+  color: white;
+  }
 
-        
+     
+.auth {
+    display: flex;
+    gap: 15px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.buttons a {
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 25px;
+    background-color: #000;
+    color: #fff;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    transition: 0.3s ease;
+}
+
+.auth a {
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 25px;
+    background-color: #000;
+    color: #fff;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    transition: 0.3s ease;
+}
+
+.auth a:hover {
+    background-color: #222;
+    transform: scale(1.05);
+}
+
+.login {
+background: transparent;
+color: white;
+}
+
+.signup {
+background: white;
+color: black;
+}
+
+.hero {
+display: flex;
+justify-content: space-between;
+padding: 80px 60px;
+}
+
+.hero-left {
+max-width: 55%;
+}
+
+.hero-left h1 {
+font-size: 60px;
+line-height: 1.1;
+}
+
+.hero-left p {
+margin-top: 20px;
+color: #aaa;
+}
+
+.buttons {
+margin-top: 30px;
+
+}
+
+.buttons button {
+padding: 12px 24px;
+border-radius: 25px;
+border: none;
+margin-right: 10px;
+cursor: pointer;
+}
+
+.primary {
+background: white;
+color: black;
+}
+
+.secondary {
+background: #1f1f1f;
+color: white;
+}
+
+.hero-right {
+flex: 1 1 400px;
+display: flex;
+justify-content: center;
+    }
+
+.golo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+
+h2 {
+  font-family: Arial, sans-serif;
+}
+
+/* NAV FIX */
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* NAV ITEM */
+.nav-item {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* MEGA MENU */
+.mega-menu {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 250px; /* Reduced fixed width for desktop */
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column; /* Stack columns by default */
+  gap: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.3s ease;
+  z-index: 100;
+  border: 1px solid #333;
+}
+
+/* SHOW ON HOVER */
+.nav-item:hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.hero {
+      display: flex;
+      justify-content: space-between;
+      padding: 60px 5%;
+      flex-wrap: wrap; /* CRITICAL FOR MOBILE */
+      gap: 40px;
+  }
+
+  .hero-left {
+      max-width: 100%; /* Changed from 55% */
+      flex: 1 1 500px; /* Grows but stays base-size */
+  }
+
+  .hero-left h1 {
+      font-size: clamp(32px, 8vw, 60px); /* Adjusts size based on screen */
+      line-height: 1.1;
+  }
+
+  .hero-right {
+      flex: 1 1 600px;   /* allows it to grow */
+      display: flex;
+      justify-content: center;
+  }
+
+  .hero-right .carousel {
+    width: 100%;
+    max-width: 500px;   /* control width */
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .hero-right .carousel-inner {
+    height: 300px;      /* control height */
+  }
+
+  .hero-right .carousel-item {
+    height: 300px;
+  }
+
+  .hero-right .carousel-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;  /* VERY IMPORTANT */
+    border-radius: 15px;
+  }
+
+  .hero-left,
+  .hero-right {
+    flex: 1 1 500px;
+  }
+
+
+  .cards {
+      display: flex;
+      gap: 20px;
+      padding: 40px 5%;
+      flex-wrap: wrap; /* Stacks cards on mobile */
+  }
+
+  .card {
+      flex: 1 1 280px; /* Minimum width of 280px before stacking */
+      height: 200px;
+      background: #1c1c1c;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+  }
+
+
+  /* COLUMNS */
+  .column {
+    flex: 1;
+  }
+
+  .column h4 {
+    margin-bottom: 10px;
+    color: #aaa;
+    font-size: 14px;
+  }
+
+  .column p {
+    margin: 8px 0;
+    font-size: 13px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .column p:hover {
+    color: white;
+    transform: translateX(5px);
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+    position: relative;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  /* make dropdown align nicely per item */
+  .mega-menu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    min-width: 300px;
+  }
+  .nav-item {
+    padding-bottom: 10px;
+  }
+  
+  /* slide */
+  
+  .eleven-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    background: #181a1b;
+    border-radius: 24px;
+    overflow: hidden;
+    padding-bottom: 30px;
+  }
+
+  .tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(0,0,0,0.2);
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: 0.3s;
+  }
+
+  .tab-btn.active {
+    background: #fff;
+    color: #000;
+  }
+
+  /* SLIDER LOGIC */
+  .slider-window {
+    width: 100%;
+    overflow: hidden; /* Itatago ang ibang slides */
+  }
+
+  .slider-track {
+      display: flex;
+      width: 400%; /* 4 slides = 400% */
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide */
+  }
+
+  .slide-item {
+      width: 100%; /* Isang slide ay kakain ng buong window width */
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+  }
+
+  .content-box {
+      background: #222;
+      width: 90%;
+      padding: 40px;
+      border-radius: 20px;
+      min-height: 300px;
+  }
+
+
+
+
+
+
+ #particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #0f172a; /* dark background */
+  }
+
+  .dashboard-content {
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+  @media (max-width: 768px) {
+
+    header {
+      display: flex;
+      flex-direction: row; 
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 5%;
+      flex-wrap: nowrap
+      
+    }
+
+    nav {
+      display: none;
+    }
+
+    .mega-menu {
+        display: none; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
+    }
+
     .auth {
+        width: auto; /* Allow it to shrink to fit the buttons */
+        margin-top: 0;
         display: flex;
-        gap: 15px;
-    }
-
-    .buttons {
-        display: flex;
-        gap: 15px;
-    }
-
-    .buttons a {
-        text-decoration: none;
-        padding: 10px 22px;
-        border-radius: 25px;
-        background-color: #000;
-        color: #fff;
-        font-weight: 500;
-        font-family: Arial, sans-serif;
-        transition: 0.3s ease;
+        gap: 8px;
     }
 
     .auth a {
-        text-decoration: none;
-        padding: 10px 22px;
-        border-radius: 25px;
-        background-color: #000;
-        color: #fff;
-        font-weight: 500;
-        font-family: Arial, sans-serif;
-        transition: 0.3s ease;
+        padding: 8px 14px;
+        font-size: 10px;
     }
-
-    .auth a:hover {
-        background-color: #222;
-        transform: scale(1.05);
-    }
-
-    .login {
-    background: transparent;
-    color: white;
-    }
-
-    .signup {
-    background: white;
-    color: black;
-    }
-
-    .hero {
-    display: flex;
-    justify-content: space-between;
-    padding: 80px 60px;
-    }
-
-    .hero-left {
-    max-width: 55%;
-    }
-
-    .hero-left h1 {
-    font-size: 60px;
-    line-height: 1.1;
-    }
-
-    .hero-left p {
-    margin-top: 20px;
-    color: #aaa;
-    }
-
-    .buttons {
-    margin-top: 30px;
-
-    }
-
-    .buttons button {
-    padding: 12px 24px;
-    border-radius: 25px;
-    border: none;
-    margin-right: 10px;
-    cursor: pointer;
-    }
-
-    .primary {
-    background: white;
-    color: black;
-    }
-
-    .secondary {
-    background: #1f1f1f;
-    color: white;
-    }
-
-    .hero-right {
-    flex: 1 1 400px;
-    display: flex;
-    justify-content: center;
-        }
-
     .golo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      gap: 5px;
     }
-
+    .golo h2 {
+        font-size: 16px; /* Shrink text slightly if it's too cramped */
+    }
+    
     img {
-      width: 40px;
-      height: 40px;
+        width: 30px; /* Smaller logo for mobile */
+        height: 30px;
     }
 
-    h2 {
-      font-family: Arial, sans-serif;
+    .eleven-container {
+        margin: 20px 10px; /* Reduces outer margin so it doesn't look squeezed */
+        border-radius: 15px; /* Softer corners for mobile */
     }
 
-    /* NAV FIX */
-    nav {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
+    .tabs-nav {
+        gap: 8px;
+        padding: 10px;
+        flex-wrap: wrap; /* Allows buttons to stack if the phone is very narrow */
     }
 
-    /* NAV ITEM */
-    .nav-item {
-      position: relative;
-      padding-bottom: 10px;
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 12px; /* Smaller text to fit all 4 buttons */
+        flex: 1 1 auto; /* Helps buttons fill the row evenly */
     }
 
-    nav a {
-      color: #ccc;
-      text-decoration: none;
-      font-size: 14px;
+    .slide-item {
+        padding: 20px 15px; /* Reduced from 40px to give content more room */
     }
 
-    /* MEGA MENU */
-    .mega-menu {
-      position: absolute;
-      top: 40px;
-      left: 0;
-      width: 250px; /* Reduced fixed width for desktop */
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column; /* Stack columns by default */
-      gap: 15px;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(10px);
-      transition: 0.3s ease;
-      z-index: 100;
-      border: 1px solid #333;
+    .content-box {
+        width: 100%; /* Use full width of the slide-item */
+        padding: 20px; /* Smaller internal padding */
+        min-height: 250px; /* Adjust height for mobile screens */
     }
 
-    /* SHOW ON HOVER */
-    .nav-item:hover .mega-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+    .content-box h3 {
+        font-size: 20px;
     }
-    .hero {
-          display: flex;
-          justify-content: space-between;
-          padding: 60px 5%;
-          flex-wrap: wrap; /* CRITICAL FOR MOBILE */
-          gap: 40px;
-      }
 
-      .hero-left {
-          max-width: 100%; /* Changed from 55% */
-          flex: 1 1 500px; /* Grows but stays base-size */
-      }
-
-      .hero-left h1 {
-          font-size: clamp(32px, 8vw, 60px); /* Adjusts size based on screen */
-          line-height: 1.1;
-      }
-
-      .hero-right {
-          flex: 1 1 600px;   /* allows it to grow */
-          display: flex;
-          justify-content: center;
-      }
-
-      .hero-right .carousel {
-        width: 100%;
-        max-width: 500px;   /* control width */
-          box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      }
-
-      .hero-right .carousel-inner {
-        height: 300px;      /* control height */
-      }
-
-      .hero-right .carousel-item {
-        height: 300px;
-      }
-
-      .hero-right .carousel-item img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;  /* VERY IMPORTANT */
-        border-radius: 15px;
-      }
-
-      .hero-left,
-      .hero-right {
-        flex: 1 1 500px;
-      }
-
-
-      .cards {
-          display: flex;
-          gap: 20px;
-          padding: 40px 5%;
-          flex-wrap: wrap; /* Stacks cards on mobile */
-      }
-
-      .card {
-          flex: 1 1 280px; /* Minimum width of 280px before stacking */
-          height: 200px;
-          background: #1c1c1c;
-          border-radius: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #888;
-      }
-
-
-      /* COLUMNS */
-      .column {
-        flex: 1;
-      }
-
-      .column h4 {
-        margin-bottom: 10px;
-        color: #aaa;
+    .content-box p {
         font-size: 14px;
-      }
-
-      .column p {
-        margin: 8px 0;
-        font-size: 13px;
-        color: #ccc;
-        cursor: pointer;
-        transition: 0.2s;
-      }
-
-      .column p:hover {
-        color: white;
-        transform: translateX(5px);
-      }
-
-      nav {
-        display: flex;
-        gap: 20px;
-        position: relative;
-      }
-
-      .nav-item {
-        position: relative;
-      }
-
-      /* make dropdown align nicely per item */
-      .mega-menu {
-        position: absolute;
-        top: 40px;
-        left: 0;
-        min-width: 300px;
-      }
-      .nav-item {
-        padding-bottom: 10px;
-      }
+    }
       
-      /* slide */
-      
-      .eleven-container {
-        max-width: 1000px;
-        margin: 50px auto;
-        background: #181a1b;
-        border-radius: 24px;
-        overflow: hidden;
-        padding-bottom: 30px;
-      }
-
-      .tabs-nav {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        padding: 20px;
-        background: rgba(0,0,0,0.2);
-      }
-
-      .tab-btn {
-        background: transparent;
-        border: none;
-        color: #888;
-        cursor: pointer;
-        padding: 10px 20px;
-        border-radius: 20px;
-        transition: 0.3s;
-      }
-
-      .tab-btn.active {
-        background: #fff;
-        color: #000;
-      }
-
-      /* SLIDER LOGIC */
-      .slider-window {
-        width: 100%;
-        overflow: hidden; /* Itatago ang ibang slides */
-      }
-
-      .slider-track {
-          display: flex;
-          width: 400%; /* 4 slides = 400% */
-          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide */
-      }
-
-      .slide-item {
-          width: 100%; /* Isang slide ay kakain ng buong window width */
-          padding: 40px;
-          display: flex;
-          justify-content: center;
-      }
-
-      .content-box {
-          background: #222;
-          width: 90%;
-          padding: 40px;
-          border-radius: 20px;
-          min-height: 300px;
-      }
-
-
-
-
-
-
-    #particles {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: #0f172a; /* dark background */
-      }
-
-      .dashboard-content {
-        position: relative;
-        z-index: 1;
-      }
-
-
-
-      @media (max-width: 768px) {
-
-        header {
-          display: flex;
-          flex-direction: row; 
-          justify-content: space-between;
-          align-items: center;
-          padding: 10px 5%;
-          flex-wrap: nowrap
-          
-        }
-
-        nav {
-          display: none;
-        }
-
-        .mega-menu {
-            display: none; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
-        }
-
-        .auth {
-            width: auto; /* Allow it to shrink to fit the buttons */
-            margin-top: 0;
-            display: flex;
-            gap: 8px;
-        }
-
-        .auth a {
-            padding: 8px 14px;
-            font-size: 10px;
-        }
-        .golo {
-          gap: 5px;
-        }
-        .golo h2 {
-            font-size: 16px; /* Shrink text slightly if it's too cramped */
-        }
-        
-        img {
-            width: 30px; /* Smaller logo for mobile */
-            height: 30px;
-        }
-
-        .eleven-container {
-            margin: 20px 10px; /* Reduces outer margin so it doesn't look squeezed */
-            border-radius: 15px; /* Softer corners for mobile */
-        }
-
-        .tabs-nav {
-            gap: 8px;
-            padding: 10px;
-            flex-wrap: wrap; /* Allows buttons to stack if the phone is very narrow */
-        }
-
-        .tab-btn {
-            padding: 8px 12px;
-            font-size: 12px; /* Smaller text to fit all 4 buttons */
-            flex: 1 1 auto; /* Helps buttons fill the row evenly */
-        }
-
-        .slide-item {
-            padding: 20px 15px; /* Reduced from 40px to give content more room */
-        }
-
-        .content-box {
-            width: 100%; /* Use full width of the slide-item */
-            padding: 20px; /* Smaller internal padding */
-            min-height: 250px; /* Adjust height for mobile screens */
-        }
-
-        .content-box h3 {
-            font-size: 20px;
-        }
-
-        .content-box p {
-            font-size: 14px;
-        }
-          
-      }
+  }
   </style>
   
   </head>
@@ -595,27 +583,10 @@ $initial = strtoupper(substr($userEmail, 0, 1));
 
   </nav>
   
-   <div class="profile-trigger" onclick="toggleAccountModal()">
-    <div class="avatar-circle"><?php echo $initial; ?></div>
-  </div>
-
-  <div id="accountModal" class="account-modal hidden">
-    <div class="modal-header">
-      <span><?php echo $userEmail; ?></span>
-      <button class="close-x" onclick="toggleAccountModal()">&times;</button>
+    <div class="auth">
+      <a href="pages/loginform.php">Login</a>
+      <a href="pages/registrationform.php">Sign-up</a>
     </div>
-
-    <div class="avatar-large"><?php echo $initial; ?></div>
-    <h2>Hi, User!</h2>
-    <a href="https://myaccount.google.com/" target="_blank" rel="noopener noreferrer" class="manage-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-    Manage your Google Account
-    <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
-    </a>
-
-    <div class="account-actions">
-      <a href="logout.php" class="action-row">Sign out</a>
-    </div>
-  </div>
   </header>
 
   <section class="hero">
@@ -623,12 +594,9 @@ $initial = strtoupper(substr($userEmail, 0, 1));
       <h1>The AI creative platform to bring your content to life</h1>
 
       <div class="buttons">
-      <a href="designhome.php" target="_blank" rel="noopener noreferrer">
-          <div class="buttons">
-            <button class="secondary" onclick="openNewWindow()">Let get start</button>
-        </div>
-      </a>
-    </div>
+        <a href="mycapstone/pages/registrationform.php">Sign-up</a>
+        <button class="secondary">Contact sales</button>
+      </div>
     </div>
 
     <div class="hero-right">
@@ -845,6 +813,5 @@ animate();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   </body>
-  <?php include "../pages/footer.php"; ?>
-  
+  <?php include "pages/footer.php"; ?>
   </html>
