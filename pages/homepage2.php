@@ -7,6 +7,7 @@
   <link rel="shortcut icon" href="logonam.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
    <canvas id="particles"></canvas>
+   
   <style>
     * {
     margin: 0;
@@ -432,6 +433,95 @@ nav a {
   }
 
 
+  /* ===== ACCOUNT MODAL ===== */
+
+.account-modal {
+  position: fixed;
+  top: 90px;
+  right: 40px;
+  z-index: 9999;
+}
+
+.account-card {
+  width: 340px;
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  border-radius: 25px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Avatar */
+.avatar-large {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 15px;
+  background: linear-gradient(135deg, #7c3aed, #6366f1);
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Name */
+.user-name {
+  margin: 10px 0 5px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Email */
+.user-email {
+  color: #9ca3af;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Manage Button */
+.manage-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 30px;
+  border: 1px solid #7c3aed;
+  color: #a78bfa;
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.manage-btn:hover {
+  background: rgba(124,58,237,0.1);
+}
+
+/* Logout Button */
+.logout-btn {
+  display: block;
+  padding: 14px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #7f1d1d, #991b1b);
+  color: #ff4d4d;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #b91c1c;
+}
+
+/* Hidden class */
+.hidden {
+  display: none;
+}
+
+
 
   @media (max-width: 768px) {
 
@@ -624,21 +714,24 @@ nav a {
   </header>
 
   <div id="accountModal" class="account-modal hidden">
-    <div class="modal-header">
-      <span><?php echo $userEmail; ?></span>
-      <button class="close-x" onclick="toggleAccountModal()">&times;</button>
+  <div class="account-card">
+
+    <div class="avatar-large">
+      <?php echo $initial; ?>
     </div>
 
-    <div class="avatar-large"><?php echo $initial; ?></div>
-    <h2>Hi, User!</h2>
-    <a href="https://myaccount.google.com/" target="_blank" rel="noopener noreferrer" class="manage-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-    Manage your Google Account
-    <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+    <h3 class="user-name">Kevin Angel User</h3>
+    <p class="user-email"><?php echo $userEmail; ?></p>
+
+    <a href="https://myaccount.google.com/" target="_blank" class="manage-btn">
+      Manage your Google Account
+      <span class="external-icon">↗</span>
     </a>
 
-    <div class="account-actions">
-      <a href="logout.php" class="action-row">Sign out</a>
-    </div>
+    <a href="logout.php" class="logout-btn">
+      Sign Out
+    </a>
+
   </div>
 
   <section class="hero">
@@ -862,17 +955,17 @@ animate();
 
 
 function toggleAccountModal() {
-    const modal = document.getElementById('accountModal');
-    modal.classList.toggle('hidden');
+  const modal = document.getElementById('accountModal');
+  modal.classList.toggle('hidden');
 }
 
 window.addEventListener("click", function(event) {
-    const modal = document.getElementById('accountModal');
-    const trigger = document.querySelector('.profile-trigger');
+  const modal = document.getElementById('accountModal');
+  const trigger = document.querySelector('.profile-trigger');
 
-    if (!modal.contains(event.target) && !trigger.contains(event.target)) {
-        modal.classList.add('hidden');
-    }
+  if (!modal.contains(event.target) && !trigger.contains(event.target)) {
+    modal.classList.add('hidden');
+  }
 });
 
 
