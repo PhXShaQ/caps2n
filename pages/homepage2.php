@@ -380,14 +380,14 @@ nav a {
 
 
   .account-modal {
-    position: fixed;        /* 🔥 CHANGE THIS */
+    position: fixed;
     top: 80px;
-    right: 40px;            /* fixed pixel is better than % */
+    right: 5%;
     width: 280px;
     background: #1a1a1a;
     border-radius: 15px;
     padding: 20px;
-    z-index: 9999;          /* 🔥 higher than everything */
+    z-index: 9999;
     box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
 
@@ -620,6 +620,9 @@ nav a {
     <div class="avatar-circle"><?php echo $initial; ?></div>
   </div>
 
+  
+  </header>
+
   <div id="accountModal" class="account-modal hidden">
     <div class="modal-header">
       <span><?php echo $userEmail; ?></span>
@@ -637,7 +640,6 @@ nav a {
       <a href="logout.php" class="action-row">Sign out</a>
     </div>
   </div>
-  </header>
 
   <section class="hero">
     <div class="hero-left">
