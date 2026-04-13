@@ -709,9 +709,6 @@ nav a {
     <div class="avatar-circle"><?php echo $initial; ?></div>
   </div>
 
-  
-  </header>
-
   <div id="accountModal" class="account-modal hidden">
   <div class="account-card">
 
@@ -731,7 +728,12 @@ nav a {
       Sign Out
     </a>
 
-  </div>
+  </div>s
+
+  
+  </header>
+
+  
 
   <section class="hero">
     <div class="hero-left">
