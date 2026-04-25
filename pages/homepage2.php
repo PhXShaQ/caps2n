@@ -1,3 +1,20 @@
+  <?php
+session_start();
+
+function generateCode($length = 8) {
+    return substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, $length);
+}
+
+$random = generateCode();
+
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: loginform.php");
+    exit();
+}
+$userEmail = $_SESSION['email'] ?? 'User';
+$initial = strtoupper(substr($userEmail, 0, 1));
+?>
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -646,7 +663,7 @@ nav a {
       <h1>The AI creative platform to bring your content to life</h1>
 
       <div class="buttons">
-        <a href="designhome.php">Lets Get Start</a>
+        <a href="/<?php echo $random; ?>">Lets Get Start</a>
         
       </div>
     </div>
