@@ -1,13 +1,12 @@
   <?php
+  session_start();
+  if (!isset($_SESSION['user_id'])) {
+      header("Location: loginform.php");
+      exit();
+  }
+  $userEmail = $_SESSION['email'] ?? 'User';
+  $initial = strtoupper(substr($userEmail, 0, 1));
 
-
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: loginform.php");
-    exit();
-}
-$userEmail = $_SESSION['email'] ?? 'User';
-$initial = strtoupper(substr($userEmail, 0, 1));
 ?>
   <!DOCTYPE html>
   <html lang="en">
