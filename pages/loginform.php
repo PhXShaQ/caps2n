@@ -33,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Invalid email or password.'); window.location='loginform.php';</script>";
     }
     $stmt->close();
+
+    
 }
 $conn->close();
 ?>

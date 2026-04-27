@@ -1,5 +1,6 @@
 RewriteEngine On
 
-RewriteCond %{REQUEST_FILENAME} !-f
+# 1. Remove .php from the URL if it exists
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([a-zA-Z0-9]+)$ route.php?code=$1 [L]
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
