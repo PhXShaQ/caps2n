@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# 1. I-redirect ang .php papunta sa URL na walang extension (SEO friendly)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/([^.]+)\.php [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# 2. Payagan ang server na basahin ang file kahit walang .php sa URL
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*?)/?$ $1.php [NC,L]
