@@ -1,6 +1,16 @@
+
+
 <?php
 session_start();
 include "config.php";
+
+echo "DB Name: " . $database . "<br>";
+
+$result = $conn->query("SELECT email FROM users");
+while ($row = $result->fetch_assoc()) {
+    echo $row['email'] . "<br>";
+}
+exit();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
