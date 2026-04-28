@@ -34,16 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $stmt->close();
 
+    $campaign = $_GET['campaign_id'] ?? 'none';
+    $version = $_GET['android-min-version'] ?? 'unknown';
+
+    echo "Campaign ID: " . $campaign;
+
 }
 $conn->close();
 ?>
 
-<?php
-$campaign = $_GET['campaign_id'] ?? 'none';
-$version = $_GET['android-min-version'] ?? 'unknown';
-
-echo "Campaign ID: " . $campaign;
-?>
 
 <!DOCTYPE html>
 <html lang="en">
