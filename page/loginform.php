@@ -1,10 +1,7 @@
 
-
 <?php
 session_start();
 include "config.php";
-
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -101,46 +98,7 @@ $conn->close();
 
 <script>
     // Google Auth Logic
-    function handleCredentialResponse(response) {
-        fetch("verify_google_login.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ token: response.credential })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = "homepage2.php";
-            } else {
-                alert("Google Login Error: " + data.message);
-            }
-        })
-        .catch(err => console.error("Error:", err));
-    }
-
-    document.getElementById('googleLoginBtn').onclick = () => {
-        google.accounts.id.prompt(); 
-    };
-
-    // UI Helper Scripts
-    const emailField = document.getElementById("email");
-    const passwordField = document.getElementById("password");
-    const submitBtn = document.getElementById("loginBtn");
-
-    function checkInputs() {
-        if (emailField && passwordField && submitBtn) {
-            submitBtn.disabled = !(emailField.value.trim() && passwordField.value.trim());
-        }
-    }
-
-    emailField.addEventListener("input", checkInputs);
-    passwordField.addEventListener("input", checkInputs);
-
-    function togglePassword() {
-        if (passwordField) {
-            passwordField.type = passwordField.type === "password" ? "text" : "password";
-        }
-    }
+   
 </script>
 </body>
 </html>
