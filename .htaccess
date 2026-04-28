@@ -1,10 +1,21 @@
 Options -MultiViews
 RewriteEngine On
 
+# 1. Redirect internal .php requests to the extensionless URL (SEO friendly)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(.+)\.php[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# 2. Check if the requested name exists as a .php file
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+# --- Your existing specific rules ---
+
 # Allow existing files/folders
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Clean URLs
-RewriteRule ^login/?$ /pages/loginform.php [L]
-RewriteRule ^signup/?$ /pages/registrationform.php [L]
+# Specific Clean URLs
+RewriteRule ^login/?$ /page/design3.php [L]
+RewriteRule ^signup/?$ /page/design4.php [L]
