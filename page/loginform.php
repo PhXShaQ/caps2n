@@ -64,7 +64,7 @@ $conn->close();
     </button>
 
     <button class="btn"><i class="fab fa-apple"></i> Sign in with Apple</button>
-    <button class="btn">Sign in with SSO</button>
+    <button class="btn">Sign in with SSOss</button>
 
     <div class="divider"></div>
 
