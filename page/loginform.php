@@ -4,14 +4,7 @@
 session_start();
 include "config.php";
 
-$user = $result->fetch_assoc();
 
-if (password_verify($password, $user['password'])) {
-    echo "MATCH";
-} else {
-    echo "NOT MATCH";
-}
-exit();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
