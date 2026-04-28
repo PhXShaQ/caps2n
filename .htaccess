@@ -1,0 +1,10 @@
+Options -MultiViews
+RewriteEngine On
+
+# Allow existing files/folders
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Clean URLs
+RewriteRule ^login/?$ /pages/loginform.php [L]
+RewriteRule ^signup/?$ /pages/registrationform.php [L]
