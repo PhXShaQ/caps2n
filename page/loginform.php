@@ -33,16 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Invalid email or password.'); window.location='loginform.php';</script>";
     }
     $stmt->close();
-
-    $campaign = $_GET['campaign_id'] ?? 'none';
-    $version = $_GET['android-min-version'] ?? 'unknown';
-
-    echo "Campaign ID: " . $campaign;
-
 }
 $conn->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +64,7 @@ $conn->close();
     </button>
 
     <button class="btn"><i class="fab fa-apple"></i> Sign in with Apple</button>
-    <button class="btn">Sign in with SSOss</button>
+    <button class="btn">Sign in with SSO</button>
 
     <div class="divider"></div>
 
