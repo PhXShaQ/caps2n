@@ -33,8 +33,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Invalid email or password.'); window.location='loginform.php';</script>";
     }
     $stmt->close();
+
 }
 $conn->close();
+?>
+
+<?php
+$campaign = $_GET['campaign_id'] ?? 'none';
+$version = $_GET['android-min-version'] ?? 'unknown';
+
+echo "Campaign ID: " . $campaign;
 ?>
 
 <!DOCTYPE html>
