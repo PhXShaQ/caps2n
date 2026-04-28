@@ -4,11 +4,12 @@
 session_start();
 include "config.php";
 
-echo "DB Name: " . $database . "<br>";
+$user = $result->fetch_assoc();
 
-$result = $conn->query("SELECT email FROM users");
-while ($row = $result->fetch_assoc()) {
-    echo $row['email'] . "<br>";
+if (password_verify($password, $user['password'])) {
+    echo "MATCH";
+} else {
+    echo "NOT MATCH";
 }
 exit();
 
