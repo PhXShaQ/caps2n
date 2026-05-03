@@ -69,7 +69,7 @@ $conn->close();
 
     <div class="divider"></div>
 
-    <form method="POST" action="loginform.php">
+    <form method="POST" action="loginform">
         <div class="input-box">
             <input type="email" name="email" class="input" placeholder=" " required id="email">
             <label>Email</label>
