@@ -71,12 +71,12 @@ $conn->close();
 
     <form method="POST" action="loginform">
         <div class="input-box">
-            <input type="email" name="email" class="input" placeholder=" " required id="email">
+            <input type="email" name="email" class="input" placeholder="Enter Email" required id="email">
             <label>Email</label>
         </div>
 
         <div class="input-box password-wrapper">
-            <input type="password" name="password" class="input" placeholder=" " required id="password">
+            <input type="password" name="password" class="input" placeholder="Enter Password" required id="password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
         </div>
