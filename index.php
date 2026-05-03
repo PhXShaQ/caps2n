@@ -585,7 +585,7 @@ nav a {
   
     <div class="auth">
       <a href="page/loginform.php">Login</a>
-      <a href="page/registrationform.php">Sign-up</a>
+      <a href="page/registration.php">Sign-up</a>
     </div>
   </header>
 
