@@ -1,4 +1,5 @@
   lucide.createIcons();
+  
             function toggleAccountModal() {
                 const modal = document.getElementById('accountModal');
                 modal.classList.toggle('hidden');

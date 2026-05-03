@@ -56,7 +56,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
             </div>
             <?php include "footer.php"; ?>
         </div>
-        <script src="../script/design2.js"></script>
+        <script src="../script/design4.js"></script>
     </body>
     
 </html>
