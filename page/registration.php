@@ -78,7 +78,6 @@ $conn->close();
         </div>
 
         <div class="input-box password-wrapper">
-            <!-- new-password tells the browser NOT to suggest old passwords -->
             <input type="password" name="password" class="input" required id="password" 
                 autocomplete="new-password">
             <label>Password</label>
