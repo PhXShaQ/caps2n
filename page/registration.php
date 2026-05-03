@@ -70,13 +70,13 @@ $conn->close();
     <div class="title">Create Account</div>
 
     <form method="POST">
-        <div class="input-box" autocomplete="off">
-            <input type="email" name="email" class="input" autocomplete="one-time-code" required id="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+        <div class="input-box" >
+            <input type="email" name="email" class="input" placeholder=" " required id="email" autocomplete="off" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
             <label>Email</label>
         </div>
 
-        <div class="input-box password-wrapper" autocomplete="off">
-            <input type="password" name="password" class="input" required id="password" autocomplete="one-time-code">
+        <div class="input-box password-wrapper">
+            <input type="password" name="password" class="input" required id="password" autocomplete="new-password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
         </div>
