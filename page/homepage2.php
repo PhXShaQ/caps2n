@@ -740,7 +740,7 @@ nav a {
 <?php include "footer.php"; ?>
 
 
-<script src="../script/designhome.js"></script>
+<script src="../script/homepage.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
