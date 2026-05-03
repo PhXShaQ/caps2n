@@ -105,7 +105,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
         </div>
        
        
-        </body>
+    </body>
      
      
     
