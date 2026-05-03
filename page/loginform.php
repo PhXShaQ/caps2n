@@ -69,18 +69,17 @@ $conn->close();
 
     <div class="divider"></div>
 
-    <form method="POST" action="loginform" autocomplete="off">
-        <div class="input-box">
-            <!-- autocomplete="username" para sa tamang autofill behavior -->
-            <input type="email" name="email" class="input" placeholder=" " required id="email" 
-                autocomplete="username">
-            <label>Email</label>
-        </div>
+    <form method="POST" action="loginform">
+        <input type="text" name="fake_email" style="display:none" aria-hidden="true">
+            <input type="password" name="fake_password" style="display:none" aria-hidden="true">
+
+            <div class="input-box">
+                <input type="email" name="email" class="input" placeholder=" " required id="email" autocomplete="one-time-code">
+                <label>Email</label>
+            </div>
 
         <div class="input-box password-wrapper">
-            <!-- autocomplete="current-password" para sa tamang pag-handle ng password -->
-            <input type="password" name="password" class="input" placeholder=" " required id="password" 
-                autocomplete="current-password">
+            <input type="password" name="password" class="input" placeholder=" " required id="password" autocomplete="new-password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
         </div>
