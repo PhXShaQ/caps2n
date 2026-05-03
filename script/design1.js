@@ -1,3 +1,123 @@
+
+
+let voiceRecorder;
+let voiceChunks = [];
+let startTime;
+let timerInterval;
+
+function startVoiceRecord() {
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        voiceRecorder = new MediaRecorder(stream);
+        voiceChunks = [];
+
+        voiceRecorder.ondataavailable = e => voiceChunks.push(e.data);
+        
+        voiceRecorder.onstop = () => {
+            const blob = new Blob(voiceChunks, { type: 'audio/mp3' });
+            const audioURL = URL.createObjectURL(blob);
+            document.getElementById('voice-playback').src = audioURL;
+            document.getElementById('audio-preview-container').classList.remove('hidden');
+            
+            // Itago ang stream
+            stream.getTracks().forEach(track => track.stop());
+        };
+
+        voiceRecorder.start();
+        startTimer();
+
+        // UI Toggle
+        document.getElementById('v-start-btn').classList.add('hidden');
+        document.getElementById('v-stop-btn').classList.remove('hidden');
+        document.getElementById('audio-preview-container').classList.add('hidden');
+    });
+}
+
+function stopVoiceRecord() {
+    voiceRecorder.stop();
+    stopTimer();
+    document.getElementById('v-start-btn').classList.remove('hidden');
+    document.getElementById('v-stop-btn').classList.add('hidden');
+}
+
+// Timer Functions
+function startTimer() {
+    startTime = Date.now();
+    timerInterval = setInterval(() => {
+        let elapsedTime = Date.now() - startTime;
+        let seconds = Math.floor((elapsedTime / 1000) % 60);
+        let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
+        document.getElementById('timer-display').innerText = 
+            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function discardRecording() {
+    document.getElementById('audio-preview-container').classList.add('hidden');
+    document.getElementById('timer-display').innerText = "00:00";
+}
+
+
+
+
+
+function startTranscription() {
+    // ... yung ibang code kanina ...
+    document.getElementById('stop-btn').classList.add('recording-active');
+}
+
+
+
+
+
+
+
+
+function addToMeetingList(filename, type) {
+    const listContainer = document.getElementById('meeting-list-container');
+    
+    // Alisin ang "No recordings yet" kung meron
+    const emptyMsg = listContainer.querySelector('.empty-msg');
+    if (emptyMsg) emptyMsg.remove();
+
+    const date = new Date().toLocaleDateString();
+    const icon = type === 'speech' ? 'video' : 'mic';
+
+    const itemHTML = `
+        <div class="meeting-item" onclick="playMeeting('${filename}')">
+            <i data-lucide="${icon}"></i>
+            <div class="meeting-info">
+                <span>${filename}</span>
+                <small>${date}</small>
+            </div>
+        </div>
+    `;
+
+    listContainer.insertAdjacentHTML('afterbegin', itemHTML);
+    lucide.createIcons(); // Para lumitaw ang icons
+}
+
+// Gamitin ito pagkatapos ng matagumpay na upload
+function uploadVoiceRecord() {
+    // ... yung upload logic mo papuntang save_voice.php ...
+    
+    // Halimbawa, pag success:
+    const mockFilename = "Voice Record " + (document.querySelectorAll('.meeting-item').length + 1);
+    addToMeetingList(mockFilename, 'voice');
+    
+    alert("Saved to Cloud!");
+    discardRecording(); // I-reset ang UI gaya ng nasa image
+}
+
+
+
+
+
+
+
 lucide.createIcons();
 
             function toggleAccountModal() {
@@ -185,135 +305,6 @@ async function sendToWhisper(blob) {
         console.error("Transcribe Error:", error);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-let voiceRecorder;
-let voiceChunks = [];
-let startTime;
-let timerInterval;
-
-function startVoiceRecord() {
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-        voiceRecorder = new MediaRecorder(stream);
-        voiceChunks = [];
-
-        voiceRecorder.ondataavailable = e => voiceChunks.push(e.data);
-        
-        voiceRecorder.onstop = () => {
-            const blob = new Blob(voiceChunks, { type: 'audio/mp3' });
-            const audioURL = URL.createObjectURL(blob);
-            document.getElementById('voice-playback').src = audioURL;
-            document.getElementById('audio-preview-container').classList.remove('hidden');
-            
-            // Itago ang stream
-            stream.getTracks().forEach(track => track.stop());
-        };
-
-        voiceRecorder.start();
-        startTimer();
-
-        // UI Toggle
-        document.getElementById('v-start-btn').classList.add('hidden');
-        document.getElementById('v-stop-btn').classList.remove('hidden');
-        document.getElementById('audio-preview-container').classList.add('hidden');
-    });
-}
-
-function stopVoiceRecord() {
-    voiceRecorder.stop();
-    stopTimer();
-    document.getElementById('v-start-btn').classList.remove('hidden');
-    document.getElementById('v-stop-btn').classList.add('hidden');
-}
-
-// Timer Functions
-function startTimer() {
-    startTime = Date.now();
-    timerInterval = setInterval(() => {
-        let elapsedTime = Date.now() - startTime;
-        let seconds = Math.floor((elapsedTime / 1000) % 60);
-        let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
-        document.getElementById('timer-display').innerText = 
-            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    }, 1000);
-}
-
-function stopTimer() {
-    clearInterval(timerInterval);
-}
-
-function discardRecording() {
-    document.getElementById('audio-preview-container').classList.add('hidden');
-    document.getElementById('timer-display').innerText = "00:00";
-}
-
-
-
-
-
-function startTranscription() {
-    // ... yung ibang code kanina ...
-    document.getElementById('stop-btn').classList.add('recording-active');
-}
-
-
-
-
-
-
-
-
-function addToMeetingList(filename, type) {
-    const listContainer = document.getElementById('meeting-list-container');
-    
-    // Alisin ang "No recordings yet" kung meron
-    const emptyMsg = listContainer.querySelector('.empty-msg');
-    if (emptyMsg) emptyMsg.remove();
-
-    const date = new Date().toLocaleDateString();
-    const icon = type === 'speech' ? 'video' : 'mic';
-
-    const itemHTML = `
-        <div class="meeting-item" onclick="playMeeting('${filename}')">
-            <i data-lucide="${icon}"></i>
-            <div class="meeting-info">
-                <span>${filename}</span>
-                <small>${date}</small>
-            </div>
-        </div>
-    `;
-
-    listContainer.insertAdjacentHTML('afterbegin', itemHTML);
-    lucide.createIcons(); // Para lumitaw ang icons
-}
-
-// Gamitin ito pagkatapos ng matagumpay na upload
-function uploadVoiceRecord() {
-    // ... yung upload logic mo papuntang save_voice.php ...
-    
-    // Halimbawa, pag success:
-    const mockFilename = "Voice Record " + (document.querySelectorAll('.meeting-item').length + 1);
-    addToMeetingList(mockFilename, 'voice');
-    
-    alert("Saved to Cloud!");
-    discardRecording(); // I-reset ang UI gaya ng nasa image
-}
-
-
-
-
-
-
 
 
 
