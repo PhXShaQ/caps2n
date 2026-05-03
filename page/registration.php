@@ -78,12 +78,11 @@ $conn->close();
         </div>
 
         <div class="input-box password-wrapper">
-            
-            <input type="password" name="password" class="input" required id="password" 
+            <input type="password" name="password" class="input" placeholder=" " required id="password" 
                 autocomplete="new-password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
-        </div>
+        </div
 
         <button type="submit" class="register-btn" id="btn" disabled>Register</button>
     </form>

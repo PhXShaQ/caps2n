@@ -71,13 +71,16 @@ $conn->close();
 
     <form method="POST" action="loginform" autocomplete="off">
         <div class="input-box">
-            <input type="email" name="email" autocomplete="one-time-code" class="input" placeholder="Enter Email" required id="email">
+            <!-- autocomplete="username" para sa tamang autofill behavior -->
+            <input type="email" name="email" class="input" placeholder=" " required id="email" 
+                autocomplete="username">
             <label>Email</label>
         </div>
 
         <div class="input-box password-wrapper">
+            <!-- autocomplete="current-password" para sa tamang pag-handle ng password -->
             <input type="password" name="password" class="input" placeholder=" " required id="password" 
-                autocomplete="new-password">
+                autocomplete="current-password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
         </div>
