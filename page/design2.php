@@ -106,11 +106,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
        
        
     </body>
-     
-     
-    
     <script src="../script/design2.js"></script>
-        
      
      
      
