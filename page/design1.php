@@ -22,7 +22,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
     <body>
         <div class="sidebars">
             <div class="logos">
-                <img src="../logonam.png" alt="logo"/>
+                
                 
             </div>
             <a href="designhome.php" class="menu-item"><i data-lucide="house"></i></a>
