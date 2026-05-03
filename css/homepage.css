@@ -1,143 +1,150 @@
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+  body {
+    background: #0f0f0f;
+    color: white;
+    overflow-x: hidden;
+  }
 
-body {
-  background: #0f0f0f;
-  color: white;
-  overflow-x: hidden;
-}
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    flex-wrap: wrap; 
+    gap: 20px;
+  }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
-  flex-wrap: wrap; 
-  gap: 20px;
-}
-
-.logo {
+  .logo {
   font-weight: bold;
   font-size: 20px;
-}
+  }
 
-nav a {
+  nav a {
   margin: 0 15px;
   color: #ccc;
   text-decoration: none;
-}
+  }
 
-nav a:hover {
+  nav a:hover {
   color: white;
-}
+  }
 
-.auth a {
-  margin-left: 10px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-}
-
-.login {
-  background: transparent;
-  color: white;
-}
-
-.signup {
-  background: white;
-  color: black;
-}
-
-.hero {
-  display: flex;
-  justify-content: space-between;
-  padding: 80px 60px;
-}
-
-.hero-left {
-  max-width: 55%;
-}
-
-.hero-left h1 {
-  font-size: 60px;
-  line-height: 1.1;
-}
-
-.hero-left p {
-  margin-top: 20px;
-  color: #aaa;
+     
+.auth {
+    display: flex;
+    gap: 15px;
 }
 
 .buttons {
-  margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.buttons a {
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 25px;
+    background-color: #000;
+    color: #fff;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    transition: 0.3s ease;
+}
+
+.auth a {
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 25px;
+    background-color: #000;
+    color: #fff;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    transition: 0.3s ease;
+}
+
+.auth a:hover {
+    background-color: #222;
+    transform: scale(1.05);
+}
+
+.login {
+background: transparent;
+color: white;
+}
+
+.signup {
+background: white;
+color: black;
+}
+
+.hero {
+display: flex;
+justify-content: space-between;
+padding: 80px 60px;
+}
+
+.hero-left {
+max-width: 55%;
+}
+
+.hero-left h1 {
+font-size: 60px;
+line-height: 1.1;
+}
+
+.hero-left p {
+margin-top: 20px;
+color: #aaa;
+}
+
+.buttons {
+margin-top: 30px;
+
 }
 
 .buttons button {
-  padding: 12px 24px;
-  border-radius: 25px;
-  border: none;
-  margin-right: 10px;
-  cursor: pointer;
+padding: 12px 24px;
+border-radius: 25px;
+border: none;
+margin-right: 10px;
+cursor: pointer;
 }
 
 .primary {
-  background: white;
-  color: black;
+background: white;
+color: black;
 }
 
 .secondary {
-  background: #5d0bf5;
-  color: white;
+background: #1f1f1f;
+color: white;
 }
 
 .hero-right {
-  max-width: 35%;
-  color: #ccc;
-  line-height: 1.6;
-}
-
-.cards {
-  display: flex;
-  gap: 20px;
-  padding: 40px 60px;
-}
-
-.card {
-  flex: 1;
-  height: 200px;
-  background: #1c1c1c;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-}
+flex: 1 1 400px;
+display: flex;
+justify-content: center;
+    }
 
 .golo {
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 10px;
-  
 }
 
-.golo h2{
-  font-size:25px;
-  margin-top: 10px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+img {
+  width: 40px;
+  height: 40px;
 }
 
-.golo img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-  transition: 0.3s;
+h2 {
+  font-family: Arial, sans-serif;
 }
 
 /* NAV FIX */
@@ -153,466 +160,345 @@ nav {
   padding-bottom: 10px;
 }
 
-
-
-
-
-.column p {
+nav a {
   color: #ccc;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.column p:hover {
-  color: #fff;
-}
-/*---------text--------*/
-.hero {
-  display: flex;
-  justify-content: space-between;
-  padding: 60px 5%;
-  flex-wrap: wrap; /* CRITICAL FOR MOBILE */
-  gap: 40px;
-}
-
-.hero-left {
-  max-width: 100%; /* Changed from 55% */
-  flex: 1 1 500px; /* Grows but stays base-size */
-}
-
-.hero-left h1 {
-  font-size: clamp(32px, 8vw, 60px); /* Adjusts size based on screen */
-  line-height: 1.1;
-}
-
-.hero-right {
-  max-width: 100%;
-  flex: 1 1 300px;
-  color: #ccc;
-  line-height: 1.6;
-}
-
-.cards {
-  display: flex;
-  gap: 20px;
-  padding: 40px 5%;
-  flex-wrap: wrap; /* Stacks cards on mobile */
-}
-
-.card {
-  flex: 1 1 280px; /* Minimum width of 280px before stacking */
-  height: 200px;
-  background: #1c1c1c;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-}
-
-/* MOBILE SPECIFIC OVERRIDES */
-
-
-
-
-
-
-
-/*--------------------------------*/
-
-/* make dropdown align nicely per item */
-
-
-.profile-trigger {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.avatar-circle {
-  width: 40px;
-  height: 40px;
-  background: #3c4043;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  border: 2px solid transparent;
-  transition: 0.2s;
-}
-
-.profile-trigger:hover .avatar-circle {
-  border-color: #5d0bf5;
-}
-
-.account-modal {
-  position: absolute;
-  top: 75px;
-  right: 60px;
-  width: 320px;
-  background: #282a2d;
-  border-radius: 24px;
-  padding: 20px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  z-index: 1000;
-  text-align: center;
-}
-
-.hidden { 
-  display: none; 
-}
-
-.avatar-large {
-  width: 80px;
-  height: 80px;
-  background: #5d0bf5;
-  border-radius: 50%;
-  margin: 0 auto 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-}
-
-.manage-btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 8px 20px;
-  border: 1px solid #5f6368;
-  border-radius: 20px;
-  color: #8ab4f8;
   text-decoration: none;
   font-size: 14px;
 }
 
-.account-actions {
-  background: #1e1f20;
-  border-radius: 16px;
-  margin-top: 20px;
-  padding: 10px;
-}
-
-.action-row {
-  display: block;
-  padding: 12px;
-  color: #e3e3e3;
-  text-decoration: none;
-  text-align: left;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-
-.action-row:hover { 
-  background: #3c4043; 
-}
-
-
-
-
-/*----------navbar--------*/
-.nav-container {
-  display: flex;
-  position: relative;
-  background: #0f0f0f;
-  padding: 15px 40px;
-  gap: 30px;
-  align-items: center;
-  font-family: 'Inter', sans-serif;
-}
-.navbar {
-  display: flex;
-  gap: 20px;
-  background: #fff;
-  padding: 20px;
-  font-family: sans-serif;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #444;
-  font-weight: 500;
-  padding: 10px 0;
-  transition: color 0.2s;
-}
-
-.nav-item {
-  position: static; /* This allows the mega-menu to reference the nav-container */
-  padding-bottom: 10px;
-}
-
-.nav-item > a {
-  text-decoration: none;
-  color: white;
-  font-weight: 600;
-  padding: 10px 15px;
-}
-
-/* The Mega Menu Styling */
+/* MEGA MENU */
 .mega-menu {
   position: absolute;
-  top: 100%; /* Sits right below the nav item */
-  left: -90px;
-  width: 100%; /* Spans the width of the navbar for a cleaner look */
-  background: #2a2828;
+  top: 40px;
+  left: 0;
+  width: 250px; /* Reduced fixed width for desktop */
+  background: #1a1a1a;
+  padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   display: flex;
-  padding: 30px;
-  gap: 10px;
-  pointer-events: none;
-  z-index: 100;
-
-  /* Animation Properties */
+  flex-direction: column; /* Stack columns by default */
+  gap: 15px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(15px) scale(0.98);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: auto;
+  transform: translateY(10px);
+  transition: 0.3s ease;
+  z-index: 100;
+  border: 1px solid #333;
 }
 
-/* Hover State */
+/* SHOW ON HOVER */
 .nav-item:hover .mega-menu {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0) scale(1);
-  pointer-events: auto; /* Active na ang clicks dito */
+  transform: translateY(0);
 }
-
-/* Inner Layout Improvements */
-.column {
-  flex: 1;
-}
-
-.column h3 {
-  font-size: 18px;
-  font-weight: 20px;
-  text-transform: uppercase;
-  color: #999;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-}
-
-.p-wrapper {
-  text-decoration: none;
-  color: inherit;
-  padding: 10px;
-  border-radius: 8px;
-  transition: background 0.2s;
-  cursor: pointer;
-}
-.p-wrapper:hover {
-  background: #5010e3; /* Subtle highlight like ElevenLabs */
-}
-
-.p-wrapper p {
-  margin: 0;
-  font-weight: bold;
-  font-size: 15px;
-}
-
-.sub-details {
-  font-size: 12px;
-  color: #666;
-  margin-top: 4px;
-  line-height: 1.4;
-}
-
-
-/* SLIDER LOGIC */
-
-.eleven-container {
-  max-width: 1500px;
-  margin: 50px auto;
-  background: #181a1b;
-  border-radius: 24px;
-  overflow: hidden;
-  padding-bottom: 30px;
-}
-
-.tabs-nav {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  padding: 20px;
-  background: rgba(0,0,0,0.2);
-}
-
-.tab-btn {
-  background: transparent;
-  border: none;
-  color: #888;
-  cursor: pointer;
-  padding: 10px 20px;
-  border-radius: 20px;
-  transition: 0.3s;
-  font-size: 18px;
-  font-weight: bold;
-
-}
-
-.tab-btn.active {
-  background: #fff;
-  color: #000;
-}
-/* SLIDER LOGIC 2 */
-
-.slider-window {
-  width: 100%;
-  overflow: hidden; /* Itatago ang ibang slides */
-}
-
-.slider-track {
-  display: flex;
-  width: 400%; /* 4 slides = 400% */
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide */
-}
-
-.slide-item {
-  width: 100%; /* Isang slide ay kakain ng buong window width */
-  padding: 40px;
-  display: flex;
-  justify-content: center;
-}
-
-.content-box {
-  background: #222;
-  width: 100%;
-  padding: 40px;
-  border-radius: 20px;
-  min-height: 500px;
-}
-
-
-/* Full screen background */
-#particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: #0f172a; /* dark background */
-}
-
-.dashboard-content {
-  position: relative;
-  z-index: 1;
-}
-
-@media (max-width: 768px) {
-  header {
-    display: flex !important;
-    flex-direction: row !important; 
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding: 10px 15px !important;
-    flex-wrap: nowrap !important; /* Forces the line */
-    
+.hero {
+      display: flex;
+      justify-content: space-between;
+      padding: 60px 5%;
+      flex-wrap: wrap; /* CRITICAL FOR MOBILE */
+      gap: 40px;
   }
 
-  .profile-trigger {
-    display: flex;
-    width: auto;
-    flex-shrink: 0;
+  .hero-left {
+      max-width: 100%; /* Changed from 55% */
+      flex: 1 1 500px; /* Grows but stays base-size */
   }
 
-  .avatar-circle {
-    width: 32px;  /* Slightly smaller for mobile */
-    height: 32px;
+  .hero-left h1 {
+      font-size: clamp(32px, 8vw, 60px); /* Adjusts size based on screen */
+      line-height: 1.1;
   }
 
-  .nav-container {
-    display: none !important;
+  .hero-right {
+      flex: 1 1 600px;   /* allows it to grow */
+      display: flex;
+      justify-content: center;
   }
 
-  nav {
-    display: none !important;
+  .hero-right .carousel {
+    width: 100%;
+    max-width: 500px;   /* control width */
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   }
 
-  .mega-menu {
-    display: none !important; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
+  .hero-right .carousel-inner {
+    height: 300px;      /* control height */
   }
 
-  .auth {
-    width: auto; /* Allow it to shrink to fit the buttons */
-    margin-top: 0;
-    display: flex;
-    gap: 8px;
+  .hero-right .carousel-item {
+    height: 300px;
   }
 
-  .auth a {
-    padding: 8px 14px;
-    font-size: 10px;
-  }
-  .golo {
-    flex-shrink: 1;
-    justify-content: flex-start;
-  }
-  .golo h2 {
-    font-size: 16px; /* Shrink text slightly if it's too cramped */
-  }
-  
-  img {
-    width: 30px; /* Smaller logo for mobile */
-    height: 30px;
+  .hero-right .carousel-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;  /* VERY IMPORTANT */
+    border-radius: 15px;
   }
 
-  .eleven-container {
-    margin: 20px 10px; /* Reduces outer margin so it doesn't look squeezed */
-    border-radius: 15px; /* Softer corners for mobile */
+  .hero-left,
+  .hero-right {
+    flex: 1 1 500px;
   }
 
-  .tabs-nav {
-    gap: 8px;
-    padding: 10px;
-    flex-wrap: wrap; /* Allows buttons to stack if the phone is very narrow */
+
+  .cards {
+      display: flex;
+      gap: 20px;
+      padding: 40px 5%;
+      flex-wrap: wrap; /* Stacks cards on mobile */
   }
 
-  .tab-btn {
-    padding: 8px 12px;
-    font-size: 12px; /* Smaller text to fit all 4 buttons */
-    flex: 1 1 auto; /* Helps buttons fill the row evenly */
+  .card {
+      flex: 1 1 280px; /* Minimum width of 280px before stacking */
+      height: 200px;
+      background: #1c1c1c;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
   }
 
-  .slide-item {
-    padding: 20px 15px; /* Reduced from 40px to give content more room */
+
+  /* COLUMNS */
+  .column {
+    flex: 1;
   }
 
-  .content-box {
-    width: 100%; /* Use full width of the slide-item */
-    padding: 20px; /* Smaller internal padding */
-    min-height: 250px; /* Adjust height for mobile screens */
-  }
-
-  .content-box h3 {
-    font-size: 20px;
-  }
-
-  .content-box p {
+  .column h4 {
+    margin-bottom: 10px;
+    color: #aaa;
     font-size: 14px;
   }
 
-  .account-modal {
-    width: 280px;
-    right: 10px;
-    top: 60px;
+  .column p {
+    margin: 8px 0;
+    font-size: 13px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
   }
-  .hero-right .carousel, 
-    .hero-right .carousel-inner {
-        height: 250px !important; /* Adjust this value to your liking */
-        border-radius: 15px;
-        overflow: hidden;
-      
-      .hero-right .carousel-item img {
-        height: 250px !important; /* Must match the container height */
-        object-fit: cover; /* This prevents the 'squished' look */
-        width: 100%;
-    }}
 
+  .column p:hover {
+    color: white;
+    transform: translateX(5px);
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+    position: relative;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  /* make dropdown align nicely per item */
+  .mega-menu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    min-width: 300px;
+  }
+  .nav-item {
+    padding-bottom: 10px;
+  }
   
+  /* slide */
+  
+  .eleven-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    background: #181a1b;
+    border-radius: 24px;
+    overflow: hidden;
+    padding-bottom: 30px;
+  }
+
+  .tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(0,0,0,0.2);
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: 0.3s;
+  }
+
+  .tab-btn.active {
+    background: #fff;
+    color: #000;
+  }
+
+  /* SLIDER LOGIC */
+  .slider-window {
+    width: 100%;
+    overflow: hidden; /* Itatago ang ibang slides */
+  }
+
+  .slider-track {
+      display: flex;
+      width: 400%; /* 4 slides = 400% */
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide */
+  }
+
+  .slide-item {
+      width: 100%; /* Isang slide ay kakain ng buong window width */
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+  }
+
+  .content-box {
+      background: #222;
+      width: 90%;
+      padding: 40px;
+      border-radius: 20px;
+      min-height: 300px;
+  }
+
+
+  .account-modal {
+    position: fixed;
+    top: 80px;
+    right: 5%;
+    width: 280px;
+    background: #1a1a1a;
+    border-radius: 15px;
+    padding: 20px;
+    z-index: 9999;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
+
+.hidden {
+    display: none;
+}
+
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.profile-trigger {
+    cursor: pointer;
+}
+
+
+
+
+
+ #particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #0f172a; /* dark background */
+  }
+
+  .dashboard-content {
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+  @media (max-width: 768px) {
+
+    header {
+      display: flex;
+      flex-direction: row; 
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 5%;
+      flex-wrap: nowrap
+      
+    }
+
+    nav {
+      display: none;
+    }
+
+    .mega-menu {
+        display: none; /* Recommended: Hide mega menus on mobile and use a burger menu instead */
+    }
+
+    .auth {
+        width: auto; /* Allow it to shrink to fit the buttons */
+        margin-top: 0;
+        display: flex;
+        gap: 8px;
+    }
+
+    .auth a {
+        padding: 8px 14px;
+        font-size: 10px;
+    }
+    .golo {
+      gap: 5px;
+    }
+    .golo h2 {
+        font-size: 16px; /* Shrink text slightly if it's too cramped */
+    }
+    
+    img {
+        width: 30px; /* Smaller logo for mobile */
+        height: 30px;
+    }
+
+    .eleven-container {
+        margin: 20px 10px; /* Reduces outer margin so it doesn't look squeezed */
+        border-radius: 15px; /* Softer corners for mobile */
+    }
+
+    .tabs-nav {
+        gap: 8px;
+        padding: 10px;
+        flex-wrap: wrap; /* Allows buttons to stack if the phone is very narrow */
+    }
+
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 12px; /* Smaller text to fit all 4 buttons */
+        flex: 1 1 auto; /* Helps buttons fill the row evenly */
+    }
+
+    .slide-item {
+        padding: 20px 15px; /* Reduced from 40px to give content more room */
+    }
+
+    .content-box {
+        width: 100%; /* Use full width of the slide-item */
+        padding: 20px; /* Smaller internal padding */
+        min-height: 250px; /* Adjust height for mobile screens */
+    }
+
+    .content-box h3 {
+        font-size: 20px;
+    }
+
+    .content-box p {
+        font-size: 14px;
+    }
+      
+  }
