@@ -71,7 +71,7 @@ $conn->close();
 
     <form method="POST">
         <div class="input-box">
-            <input type="email" name="email" class="input" placeholder=" " required id="email" 
+            <input type="email" name="email" class="input"  required id="email" 
                 autocomplete="off"
                 value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
             <label>Email</label>
