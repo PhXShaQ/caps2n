@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email'] = $user['email'];
 
             // Server-side redirect is faster and safer for sessions
-            header("Location: homepage2.php");
+            header("Location: /homepage2.php");
             exit();
 
         } else {
@@ -70,7 +70,7 @@ $conn->close();
 
     <div class="divider"></div>
 
-    <form method="POST" action="loginform.php">
+    <form method="POST" action="pages/d8c98041b639bc29?is_sa=1">
         <div class="input-box">
             <input type="email" name="email" class="input" placeholder=" " required id="email" autocomplete="username">
             <label>Email</label>
