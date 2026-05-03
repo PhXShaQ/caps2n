@@ -17,7 +17,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
         <title>Meeting Dashboard</title>
         <link rel="shortcut icon" href="logonam.png" type="image/x-icon">
         <script src="https://unpkg.com/lucide@latest"></script>
-        <link rel="stylesheet" href="../css/design1.css">
+        
     </head>
     <body>
         <div class="sidebars">
