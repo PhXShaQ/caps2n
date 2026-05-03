@@ -1,4 +1,431 @@
- /* Gawing Flex ang body para magkatabi ang inner sidebar at main content */
+:root {
+    --bg: #0f1117;
+    --sidebar: #151823;
+    --card: #1c1f2b;
+    --text: #ffffff;
+    --muted: #8b90a0;
+    --purple: #7c5cff;
+    --border: #262a38;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+body {
+    display: flex;
+    flex-direction: row;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 150vh;
+    overflow-x: hidden;
+}
+/* Sidebar - Fixed Position */
+.sidebar {
+    width: 200px;
+    background: var(--sidebar);
+    padding: 20px;
+    border-right: 1px solid var(--border);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+.logos {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    margin-bottom: 30px;
+}
+.logos h2 { 
+    font-size: 18px; 
+    font-family: sans-serif; 
+}
+.logos img { 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+}
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: 0.2s;
+}
+.menu-item:hover {
+    background-color: var(--purple);
+    color: white;
+}
+/* general */
+.main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column; /* Crucial for footer positioning */
+    
+}
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+}
+.search {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 8px 15px;
+    border-radius: 8px;
+    color: white;
+    width: 300px;
+}
+
+.topbar { 
+    position: relative; 
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,0,0,0.7); }
+    70% { box-shadow: 0 0 0 12px rgba(255,0,0,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,0,0,0); }
+}
+
+/* general */
+
+/* signout */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-trigger {
+    width: 35px;
+    height: 35px;
+    background: var(--purple);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.profile-trigger:hover { 
+    border-color: white; 
+}
+
+.account-modal {
+    position: absolute;
+    top: 70px;
+    right: 25px;
+    width: 300px;
+    background: var(--sidebar);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    z-index: 1000;
+    text-align: center;
+}
+
+.hidden { 
+    display: none; 
+}
+
+.modal-avatar-large {
+    width: 60px;
+    height: 60px;
+    background: var(--purple);
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.manage-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--purple);
+    text-decoration: none;
+    font-size: 14px;
+    border: 1px solid var(--purple);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.signout-btn {
+    display: block;
+    margin-top: 20px;
+    padding: 10px;
+    background: #ef44441a;
+    color: #ef4444;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.signout-btn:hover { 
+    background: #ef4444; 
+    color: white; 
+}
+/* signout */
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Stacks sidebar on top of content */
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 15px;
+    }
+    .logos {
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+    /* Make menu items scroll horizontally on mobile or stack neatly */
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .menu-item {
+        width: 100%;
+        justify-content: center;
+    }
+    .topbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+    .search {
+        width: 100%; /* Search bar takes full width on mobile */
+    }
+    .content-body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+    
+    #transcript {
+        min-height: 150px; /* Smaller height for mobile screens */
+    }
+}
+
+
+/* designhome */
+
+ .top-badge {
+        display: inline-block;
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 8px 18px;
+        border-radius: 30px;
+        font-size: 13px;
+        margin-bottom: 30px;
+        color: #ccc;
+    }
+
+    .top-badge span {
+        background: #7c5cff;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 11px;
+        margin-right: 8px;
+        color: #fff;
+    }
+
+    h1 {
+        font-size: 26px;
+        margin-bottom: 50px;
+        font-weight: 500;
+    }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+       
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 25px;
+        padding: 50px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.4s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 30px rgba(124, 92, 255, 0.2);
+    }
+
+    .icon {
+        font-size: 45px;
+        margin-bottom: 15px;
+    }
+
+    .card p {
+        font-size: 16px;
+        color: #ddd;
+    }
+
+    .container2 {
+        background: #1e293b;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media(max-width: 600px){
+        body{
+            padding:20px;
+        }
+    }
+/* designhome */
+
+/* design 1 */
+
+.content-body {
+    /*remove is needed padding: 30px; */
+    flex: 1; /* Pushes the footer down */
+}
+.container {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Folder Grid */
+.folder-container{
+    display:flex;
+    justify-content: center; /* Centers folder horizontally */
+    align-items: center;     /* Centers folder vertically */
+    gap:20px;
+    padding:40px;
+    background: #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    min-height: 400px;
+}
+
+.folder{
+    width:300px;
+    height:300px;
+    background:#242526;
+    border-radius:10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:0.3s;
+    width: 150px;  /* Increase the overall box size if needed */
+    height: 150px;
+}
+
+.folder span, .folder i {
+    font-size: 50px; /* Adjust this value to make the icon bigger or smaller */
+    margin-bottom: 10px;
+    display: block;
+    transition: transform 0.2s;
+}
+
+/* Optional: Make it pop more when you hover */
+.folder:hover span, .folder:hover i {
+    transform: scale(1.1);
+}
+
+.folder:hover{
+    background:#3a3b3c;
+    transform:scale(1.05);
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.preview-box {
+    position: relative;
+    width: 1200px;
+    height: 700px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+span {
+    cursor:pointer;
+}
+
+.preview-content {
+    flex: 1;
+    margin: 15px 0;
+    overflow-y: auto;
+}
+
+#transcript {
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    min-height: 520px;
+}
+
+.stop-btn {
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:14px 28px;
+    border-radius:30px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 0 20px rgba(239,68,68,0.5);
+}
+
+.stop-btn:hover{
+    background:#dc2626;
+    transform:translateX(-50%) scale(1.05);
+}
+/* Gawing Flex ang body para magkatabi ang inner sidebar at main content */
 .content-body {
     display: flex;
     padding: 0; /* Alisin ang default padding kung meron */
