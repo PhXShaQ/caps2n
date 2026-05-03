@@ -735,9 +735,9 @@ nav a {
 
         </div>
     </div>
-    <?php include "footer.php"; ?>
+    
 </div>
-
+<?php include "footer.php"; ?>
 
 <script>
 
