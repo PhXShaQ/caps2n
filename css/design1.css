@@ -184,130 +184,10 @@ body {
 }
 /* signout */
 
-/* MOBILE ADJUSTMENTS */
-@media (max-width: 768px) {
-    body {
-        flex-direction: column; /* Stacks sidebar on top of content */
-    }
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        padding: 15px;
-    }
-    .logos {
-        margin-bottom: 15px;
-        justify-content: center;
-    }
-    /* Make menu items scroll horizontally on mobile or stack neatly */
-    .sidebar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .menu-item {
-        width: 100%;
-        justify-content: center;
-    }
-    .topbar {
-        flex-direction: column;
-        gap: 15px;
-        padding: 20px;
-    }
-    .search {
-        width: 100%; /* Search bar takes full width on mobile */
-    }
-    .content-body {
-        padding: 15px;
-    }
-
-    .container {
-        padding: 20px;
-    }
-    
-    #transcript {
-        min-height: 150px; /* Smaller height for mobile screens */
-    }
-}
 
 
-/* designhome */
 
- .top-badge {
-        display: inline-block;
-        background: rgba(255,255,255,0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.1);
-        padding: 8px 18px;
-        border-radius: 30px;
-        font-size: 13px;
-        margin-bottom: 30px;
-        color: #ccc;
-    }
 
-    .top-badge span {
-        background: #7c5cff;
-        padding: 4px 10px;
-        border-radius: 15px;
-        font-size: 11px;
-        margin-right: 8px;
-        color: #fff;
-    }
-
-    h1 {
-        font-size: 26px;
-        margin-bottom: 50px;
-        font-weight: 500;
-    }
-
-    .card-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-       
-    }
-
-    .card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 25px;
-        padding: 50px 20px;
-        text-align: center;
-        cursor: pointer;
-        transition: 0.4s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-8px);
-        background: rgba(255, 255, 255, 0.08);
-        box-shadow: 0 10px 30px rgba(124, 92, 255, 0.2);
-    }
-
-    .icon {
-        font-size: 45px;
-        margin-bottom: 15px;
-    }
-
-    .card p {
-        font-size: 16px;
-        color: #ddd;
-    }
-
-    .container2 {
-        background: #1e293b;
-        width: 100%;
-        height: 100%;
-    }
-
-    @media(max-width: 600px){
-        body{
-            padding:20px;
-        }
-    }
-/* designhome */
 
 /* design 1 */
 
@@ -795,4 +675,52 @@ span {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Stacks sidebar on top of content */
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 15px;
+    }
+    .logos {
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+    /* Make menu items scroll horizontally on mobile or stack neatly */
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .menu-item {
+        width: 100%;
+        justify-content: center;
+    }
+    .topbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+    .search {
+        width: 100%; /* Search bar takes full width on mobile */
+    }
+    .content-body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+    
+    #transcript {
+        min-height: 150px; /* Smaller height for mobile screens */
+    }
 }
