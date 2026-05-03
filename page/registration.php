@@ -78,9 +78,9 @@ $conn->close();
         </div>
 
         <div class="input-box password-wrapper">
+            
             <input type="password" name="password" class="input" required id="password" 
-                autocomplete="off"
-                value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>">
+                autocomplete="new-password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
         </div>
