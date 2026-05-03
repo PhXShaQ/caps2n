@@ -16,11 +16,3 @@ RewriteRule ^(.+?)/?$ $1.php [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Specific Clean URLs
-RewriteRule ^login/?$ /page/loginform.php [L]
-RewriteRule ^signup/?$ /page/registrationform.php [L]
-
-# Obfuscated Login URL
-# Matches /pages/d8c98041b639bc29 and handles any appended query strings
-RewriteCond %{QUERY_STRING} ^is_sa=1
-RewriteRule ^pages/d8c98041b639bc29/?$ /page/loginform.php [L,QSA]
