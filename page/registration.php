@@ -82,7 +82,7 @@ $conn->close();
                 autocomplete="new-password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
-        </div
+        </div>
 
         <button type="submit" class="register-btn" id="btn" disabled>Register</button>
     </form>
