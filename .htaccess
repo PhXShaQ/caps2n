@@ -18,7 +18,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 # Specific Clean URLs
 RewriteRule ^login/?$ /page/loginform.php [L]
-RewriteRule ^signup/?$ /page/registrationform.php [L]
+RewriteRule ^signup/?$ /page/registration.php [L]
 
 # Obfuscated Login URL
 # Matches /pages/d8c98041b639bc29 and handles any appended query strings
