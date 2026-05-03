@@ -737,13 +737,11 @@ nav a {
     </div>
     
 </div>
-<?php include "footer.php"; ?>
-
-
-<script src="../script/homepage.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <?php include "footer.php"; ?>
 
   </body>
+  <script src="../script/homepage.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   
   </html>
