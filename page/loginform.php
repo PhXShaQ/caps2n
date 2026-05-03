@@ -76,7 +76,8 @@ $conn->close();
         </div>
 
         <div class="input-box password-wrapper">
-            <input type="password" name="password" class="input" placeholder="Enter Password" required id="password" autocomplete="new-password">
+            <input type="password" name="password" class="input" placeholder=" " required id="password" 
+                autocomplete="new-password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
         </div>
