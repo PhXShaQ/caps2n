@@ -71,14 +71,15 @@ $conn->close();
 
     <form method="POST" action="loginform" autocomplete="off">
         <div class="input-box">
-            <input type="email" name="email" id="email" autocomplete="one-time-code" ...>
+            <input type="email" name="email" autocomplete="one-time-code" class="input" required id="email">
             <label>Email</label>
         </div>
 
         <div class="input-box password-wrapper">
-        <input type="password" name="password" id="password" autocomplete="new-password" ...>
-        <label>Password</label>
-    </div>
+            <input type="password" name="password" class="input" required id="password" autocomplete="new-password">
+            <label>Password</label>
+            <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
+        </div>
 
         <button type="submit" class="login-btn" id="loginBtn">Sign in</button>
     </form>
