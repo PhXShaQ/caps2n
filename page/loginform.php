@@ -8,30 +8,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    $sql = "SELECT * FROM users WHERE email = ?";
+    // Ensure we are selecting the ID and correct column names
+    $sql = "SELECT id, email, password FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows == 1) {
-        $user = $result->fetch_assoc();
-
-        // password_verify automatically detects Argon2id or Bcrypt
+    if ($user = $result->fetch_assoc()) {
+        // password_verify works for Argon2id and Bcrypt automatically
         if (password_verify($password, $user['password'])) {
 
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
 
-            echo "<script>alert('Login Successful!'); window.location='homepage2.php';</script>";
+            // Server-side redirect is faster and safer for sessions
+            header("Location: homepage2.php");
             exit();
 
         } else {
             echo "<script>alert('Invalid email or password.'); window.location='loginform.php';</script>";
+            exit();
         }
     } else {
-        // We use the same message for security (don't tell attackers which part was wrong)
         echo "<script>alert('Invalid email or password.'); window.location='loginform.php';</script>";
+        exit();
     }
     $stmt->close();
 }
@@ -71,12 +72,12 @@ $conn->close();
 
     <form method="POST" action="loginform.php">
         <div class="input-box">
-            <input type="email" name="email" class="input" placeholder=" " required id="email">
+            <input type="email" name="email" class="input" placeholder=" " required id="email" autocomplete="username">
             <label>Email</label>
         </div>
 
         <div class="input-box password-wrapper">
-            <input type="password" name="password" class="input" placeholder=" " required id="password">
+            <input type="password" name="password" class="input" placeholder=" " required id="password" autocomplete="current-password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
         </div>
