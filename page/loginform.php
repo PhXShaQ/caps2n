@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email'] = $user['email'];
 
             // Server-side redirect is faster and safer for sessions
-            header("Location: /homepage2.php");
+            header("Location: homepage2.php");
             exit();
 
         } else {
