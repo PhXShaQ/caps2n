@@ -69,14 +69,14 @@ $conn->close();
 
     <div class="divider"></div>
 
-    <form method="POST" action="loginform">
+    <form method="POST" action="loginform" autocomplete="off">
         <div class="input-box">
-            <input type="email" name="email" class="input" placeholder="Enter Email" required id="email">
+            <input type="email" name="email" autocomplete="one-time-code" class="input" placeholder="Enter Email" required id="email">
             <label>Email</label>
         </div>
 
         <div class="input-box password-wrapper">
-            <input type="password" name="password" class="input" placeholder="Enter Password" required id="password">
+            <input type="password" name="password" class="input" placeholder="Enter Password" required id="password" autocomplete="new-password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
         </div>
