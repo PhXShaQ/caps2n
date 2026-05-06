@@ -6,6 +6,6 @@
 
         unset ($_SESSION ['email']);
 
-        echo "<script>window.location.href = 'login.php'</script>";
+        echo "<script>window.location.href = 'loginform.php'</script>";
     }
 ?>

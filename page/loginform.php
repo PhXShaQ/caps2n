@@ -1,5 +1,5 @@
 <?php
-require('database.php');
+require('config.php');
 session_start();
 
 // Check session
@@ -8,7 +8,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] == 'invalid') {
 }
 
 if ($_SESSION['status'] == 'valid') {
-    header("Location: home.php");
+    header("Location: homepage2.php");
     exit();
 }
 
@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
 
             if (password_verify($password, $row['password'])) {
                 $_SESSION['status'] = 'valid';
-                header("Location: home.php");
+                header("Location: homepage2.php");
                 exit();
             } else {
                 echo "<script>alert('Invalid credentials')</script>";
