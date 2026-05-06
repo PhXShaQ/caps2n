@@ -8,7 +8,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] == 'invalid') {
 }
 
 if ($_SESSION['status'] == 'valid') {
-    header("Location: homepage2.php");
+    header("Location: homepage2");
     exit();
 }
 
@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
 
             if (password_verify($password, $row['password'])) {
                 $_SESSION['status'] = 'valid';
-                header("Location: homepage2.php");
+                header("Location: homepage2");
                 exit();
             } else {
                 echo "<script>alert('Invalid credentials')</script>";
@@ -76,7 +76,7 @@ if (isset($_POST['login'])) {
 
     <div class="divider"></div>
 
-    <form method="POST" action="login.php">
+    <form method="POST" action="loginform.php">
         <div class="input-box">
             <input type="email" name="email" class="input" placeholder=" " required id="email">
             <label>Email</label>
