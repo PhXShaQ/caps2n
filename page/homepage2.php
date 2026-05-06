@@ -1,4 +1,15 @@
   <?php
+
+  // I-paste din ito sa pinakataas ng homepage2.php at iba pang pages
+$cookie_lifetime = 30 * 24 * 60 * 60; 
+session_set_cookie_params([
+    'lifetime' => $cookie_lifetime,
+    'path' => '/',
+    'domain' => $_SERVER['HTTP_HOST'],
+    'secure' => false, // Gawing true kung naka-HTTPS sa live domain
+    'httponly' => true,
+    'samesite' => 'Strict'
+]);
   session_start();
   if (!isset($_SESSION['user_id'])) {
       header("Location: loginform.php");
