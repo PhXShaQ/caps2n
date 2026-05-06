@@ -25,7 +25,7 @@
 
   <header>
     <div class="logo">
-      <img src="logonam.png" alt="logo"/>
+      <img src="../logonam.png" alt="logo"/>
       <h2>Kevin's Angel</h2>
     </div>
 
