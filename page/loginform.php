@@ -1,5 +1,19 @@
 
 <?php
+
+// 1. I-set ang haba ng buhay ng cookie bago mag-session_start
+// 30 araw * 24 oras * 60 minuto * 60 segundo = 2,592,000 segundo
+$cookie_lifetime = 30 * 24 * 60 * 60; 
+
+session_set_cookie_params([
+    'lifetime' => $cookie_lifetime,
+    'path' => '/',
+    'domain' => $_SERVER['HTTP_HOST'],
+    'secure' => false,     // I-set sa true kung may HTTPS/SSL na ang live site mo (e.g., Hostinger)
+    'httponly' => true,   // Proteksyon laban sa XSS script injections
+    'samesite' => 'Strict' // Dagdag proteksyon para sa security
+]);
+
 session_start();
 include "config.php";
 
