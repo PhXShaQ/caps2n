@@ -50,7 +50,7 @@ if (isset($_POST['login'])) {
     <link rel="shortcut icon" href="logonam.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="loginform.css">
+    <link rel="stylesheet" href="../css/loginform.css">
 </head>
 <body>
   
