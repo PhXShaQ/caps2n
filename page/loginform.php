@@ -1,55 +1,43 @@
-
 <?php
-
-// 1. I-set ang haba ng buhay ng cookie bago mag-session_start
-// 30 araw * 24 oras * 60 minuto * 60 segundo = 2,592,000 segundo
-$cookie_lifetime = 30 * 24 * 60 * 60; 
-
-session_set_cookie_params([
-    'lifetime' => $cookie_lifetime,
-    'path' => '/',
-    'domain' => $_SERVER['HTTP_HOST'],
-    'secure' => false,     // I-set sa true kung may HTTPS/SSL na ang live site mo (e.g., Hostinger)
-    'httponly' => true,   // Proteksyon laban sa XSS script injections
-    'samesite' => 'Strict' // Dagdag proteksyon para sa security
-]);
-
+require('database.php');
 session_start();
-include "config.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Check session
+if (!isset($_SESSION['status']) || $_SESSION['status'] == 'invalid') {
+    $_SESSION['status'] = 'invalid';
+}
+
+if ($_SESSION['status'] == 'valid') {
+    header("Location: home.php");
+    exit();
+}
+
+// Login
+if (isset($_POST['login'])) {
 
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    $sql = "SELECT * FROM users WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 1) {
-        $user = $result->fetch_assoc();
-
-        // password_verify automatically detects Argon2id or Bcrypt
-        if (password_verify($password, $user['password'])) {
-
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['email'] = $user['email'];
-
-            echo "<script>alert('Login Successful!'); window.location='homepage2.php';</script>";
-            exit();
-
-        } else {
-            echo "<script>alert('Invalid email or password.'); window.location='loginform.php';</script>";
-        }
+    if (empty($email) || empty($password)) {
+        echo "<script>alert('Please fill up')</script>";
     } else {
-        // We use the same message for security (don't tell attackers which part was wrong)
-        echo "<script>alert('Invalid email or password.'); window.location='loginform.php';</script>";
+
+        $queryValidate = "SELECT * FROM users WHERE email = '$email'";
+        $sqlValidate = mysqli_query($connection, $queryValidate);
+
+        if (mysqli_num_rows($sqlValidate) > 0) {
+            $row = mysqli_fetch_assoc($sqlValidate);
+
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['status'] = 'valid';
+                header("Location: home.php");
+                exit();
+            } else {
+                echo "<script>alert('Invalid credentials')</script>";
+            }
+        }
     }
-    $stmt->close();
 }
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -62,11 +50,16 @@ $conn->close();
     <link rel="shortcut icon" href="logonam.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/loginform.css">
+    <link rel="stylesheet" href="loginform.css">
 </head>
 <body>
+  
+    
 
-<div class="container">
+
+
+
+    <div class="container">
     <div class="logo-container">
         <img src="../logonam.png" class="logo-img">
     </div>
@@ -83,22 +76,21 @@ $conn->close();
 
     <div class="divider"></div>
 
-    <form method="POST" action="loginform">
-        <input type="text" name="fake_email" style="display:none" aria-hidden="true">
-            <input type="password" name="fake_password" style="display:none" aria-hidden="true">
-
-            <div class="input-box">
-                <input type="email" name="email" class="input" placeholder=" " required id="email" autocomplete="one-time-code">
-                <label>Email</label>
-            </div>
+    <form method="POST" action="login.php">
+        <div class="input-box">
+            <input type="email" name="email" class="input" placeholder=" " required id="email">
+            <label>Email</label>
+        </div>
 
         <div class="input-box password-wrapper">
-            <input type="password" name="password" class="input" placeholder=" " required id="password" autocomplete="new-password">
+            <input type="password" name="password" class="input" placeholder=" " required id="password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
         </div>
 
-        <button type="submit" class="login-btn" id="loginBtn">Sign in</button>
+       
+
+        <button type="submit" name="login" class="login-btn" id="login">Sign in</button>
     </form>
 
     <div class="footer">
@@ -112,49 +104,5 @@ $conn->close();
          data-use_fedcm_for_prompt="true">
     </div>
 </div>
-
-<script>
-    // Google Auth Logic
-    function handleCredentialResponse(response) {
-        fetch("verify_google_login.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ token: response.credential })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = "homepage2.php";
-            } else {
-                alert("Google Login Error: " + data.message);
-            }
-        })
-        .catch(err => console.error("Error:", err));
-    }
-
-    document.getElementById('googleLoginBtn').onclick = () => {
-        google.accounts.id.prompt(); 
-    };
-
-    // UI Helper Scripts
-    const emailField = document.getElementById("email");
-    const passwordField = document.getElementById("password");
-    const submitBtn = document.getElementById("loginBtn");
-
-    function checkInputs() {
-        if (emailField && passwordField && submitBtn) {
-            submitBtn.disabled = !(emailField.value.trim() && passwordField.value.trim());
-        }
-    }
-
-    emailField.addEventListener("input", checkInputs);
-    passwordField.addEventListener("input", checkInputs);
-
-    function togglePassword() {
-        if (passwordField) {
-            passwordField.type = passwordField.type === "password" ? "text" : "password";
-        }
-    }
-</script>
 </body>
 </html>
