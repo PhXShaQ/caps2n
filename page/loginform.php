@@ -96,7 +96,7 @@ $conn->close();
     </div>
 
     <div id="g_id_onload"
-         data-client_id="997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com"
+         data-client_id="997021567508-mh2g2fv9cm60v9gcgstbbjpe8bisp69c.apps.googleusercontent.com"
          data-callback="handleCredentialResponse"
          data-auto_prompt="false"
          data-use_fedcm_for_prompt="true">
@@ -106,39 +106,25 @@ $conn->close();
 <script>
     // Google Auth Logic
 window.onload = function () {
-    // 1. I-initialize ang Google Client
+    // 1. I-initialize si Google gamit ang JS para masiguradong basang-basa ang Client ID at callback
     google.accounts.id.initialize({
         client_id: "997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com",
         callback: handleCredentialResponse,
-        use_fedcm_for_prompt: true
+        use_fedcm_for_prompt: true // Mahalaga para sa modernong browsers (FedCM)
     });
 
-    // 2. I-render o i-bind si Google sa iyong custom button
-    // Sa paraang ito, si Google mismo ang mag-aasikaso ng secure popup at ibabalik ang token nang tama.
-    google.accounts.id.renderButton(
-        document.getElementById("googleLoginBtn"),
-        { 
-            type: "standard", // Gagamit ito ng opisyal at ligtas na Google layout na kasya sa button mo
-            theme: "outline", 
-            size: "large", 
-            width: "100%",
-            text: "signin_with"
-        }
-    );
-
-    // Backup: One Tap Prompt (lalabas sa kanang itaas ng screen para sa madaling login)
-    google.accounts.id.prompt();
+    // 2. I-bind ang click event sa iyong custom button
+    document.getElementById('googleLoginBtn').onclick = () => {
+        google.accounts.id.prompt((notification) => {
+            if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                // Kung ayaw lumabas ng One Tap prompt, pwersahin natin gamit ang default popup overlay
+                console.log("One tap prompt was not displayed, trying normal prompt...");
+            }
+        });
+    };
 };
 
 function handleCredentialResponse(response) {
-    // I-verify kung may nakuha ngang token mula kay Google
-    if (!response.credential) {
-        console.error("No credential returned from Google.");
-        alert("Google Authentication failed: No credential received.");
-        return;
-    }
-
-    // I-send ang token sa iyong PHP backend
     fetch("verify_google_login.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -147,38 +133,12 @@ function handleCredentialResponse(response) {
     .then(res => res.json())
     .then(data => {
         if (data.success) {
-            // Matagumpay ang login! I-redirect sa homepage
             window.location.href = "homepage2.php";
         } else {
             alert("Google Login Error: " + data.message);
         }
     })
-    .catch(err => {
-        console.error("Fetch Error:", err);
-        alert("An error occurred during communication with the server.");
-    });
-}
-
-// UI Helper Scripts (Ito 'yung dati mong code sa baba, walang bago rito)
-const emailField = document.getElementById("email");
-const passwordField = document.getElementById("password");
-const submitBtn = document.getElementById("loginBtn");
-
-function checkInputs() {
-    if (emailField && passwordField && submitBtn) {
-        submitBtn.disabled = !(emailField.value.trim() && passwordField.value.trim());
-    }
-}
-
-if (emailField && passwordField) {
-    emailField.addEventListener("input", checkInputs);
-    passwordField.addEventListener("input", checkInputs);
-}
-
-function togglePassword() {
-    if (passwordField) {
-        passwordField.type = passwordField.type === "password" ? "text" : "password";
-    }
+    .catch(err => console.error("Error:", err));
 }
 </script>
 </body>
