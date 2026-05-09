@@ -76,12 +76,12 @@ $conn->close();
             <input type="password" name="fake_password" style="display:none" aria-hidden="true">
 
             <div class="input-box">
-                <input type="email" name="email" class="input" placeholder=" " required id="email" autocomplete="one-time-code">
+                <input type="email" name="email" class="input" placeholder=" " required id="email" autocomplete="email">
                 <label>Email</label>
             </div>
 
         <div class="input-box password-wrapper">
-            <input type="password" name="password" class="input" placeholder=" " required id="password" autocomplete="new-password">
+            <input type="password" name="password" class="input" placeholder=" " required id="password" autocomplete="current-password">
             <label>Password</label>
             <i class="fa-solid fa-eye" onclick="togglePassword()" style="cursor: pointer;"></i>
         </div>
