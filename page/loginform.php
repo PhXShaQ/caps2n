@@ -63,10 +63,11 @@ $conn->close();
     <div class="logo">Kevin's Angel</div>
     <div class="title">Welcome back</div>
 
-    <button type="button" class="btn" id="googleLoginBtn">
+   
+    <div id="googleBtn">
         <img src="https://www.svgrepo.com/show/475656/google-color.svg" style="width:18px; height:18px;">
         Sign in with Google
-    </button>
+    </div>
 
     <button class="btn"><i class="fab fa-apple"></i> Sign in with Apple</button>
     <button class="btn">Sign in with SSO</button>
@@ -95,12 +96,7 @@ $conn->close();
         Don’t have an account? <a href="registration.php">Sign up</a>
     </div>
 
-    <div id="g_id_onload"
-         data-client_id="997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com"
-         data-callback="handleCredentialResponse"
-         data-auto_prompt="false"
-         data-use_fedcm_for_prompt="true">
-    </div>
+   
 </div>
 
 <script>
@@ -112,25 +108,22 @@ window.onload = function () {
         callback: handleCredentialResponse
     });
 
-    // Render hidden Google button
     google.accounts.id.renderButton(
-        document.getElementById("hiddenGoogleBtn"),
+        document.getElementById("googleBtn"),
         {
             theme: "outline",
-            size: "large"
+            size: "large",
+            width: 300
         }
     );
-
-    // Click your custom button -> trigger hidden Google button
-    document.getElementById("googleLoginBtn").addEventListener("click", function () {
-        document.querySelector("#hiddenGoogleBtn div[role=button]").click();
-    });
 };
 
 function handleCredentialResponse(response) {
 
+    console.log(response);
+
     if (!response.credential) {
-        alert("Google token not received.");
+        alert("No Google token received.");
         return;
     }
 
@@ -146,6 +139,8 @@ function handleCredentialResponse(response) {
     .then(res => res.json())
     .then(data => {
 
+        console.log(data);
+
         if (data.success) {
             window.location.href = "homepage2.php";
         } else {
@@ -155,7 +150,7 @@ function handleCredentialResponse(response) {
     })
     .catch(error => {
         console.error(error);
-        alert("Google login failed.");
+        alert("Fetch error.");
     });
 }
 
