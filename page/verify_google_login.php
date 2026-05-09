@@ -3,11 +3,27 @@ session_start();
 include "config.php"; // Ensure this contains your $conn (mysqli) connection
 
 // Get the JSON data sent from the frontend fetch()
-$data = json_decode(file_get_contents("php://input"), true);
+$rawData = file_get_contents("php://input");
 
-if (!isset($data['token'])) {
-    echo json_encode(['success' => false, 'message' => 'No token provided.']);
-    exit;
+file_put_contents("debug_google.txt", $rawData);
+
+$data = json_decode($rawData, true);
+
+if (!$data || !isset($data['token'])) {
+
+    // fallback support for form-data
+    if (isset($_POST['token'])) {
+        $id_token = $_POST['token'];
+    } else {
+        echo json_encode([
+            'success' => false,
+            'message' => 'No token provided.'
+        ]);
+        exit;
+    }
+
+} else {
+    $id_token = $data['token'];
 }
 
 $id_token = $data['token'];
