@@ -96,7 +96,7 @@ $conn->close();
     </div>
 
     <div id="g_id_onload"
-         data-client_id="997021567508-chrjcc35gkiiigukc4u2jfu2qdmt.apps.googleusercontent.com"
+         data-client_id="997021567508-mh2g2fv9cm60v9gcgstbbjpe8bisp69c.apps.googleusercontent.com"
          data-callback="handleCredentialResponse"
          data-auto_prompt="false"
          data-use_fedcm_for_prompt="true">
@@ -108,7 +108,7 @@ $conn->close();
 window.onload = function () {
 
     google.accounts.id.initialize({
-        client_id: "997021567508-chrjcc35gkiiigukc4u2jfu2qdmt.apps.googleusercontent.com",
+        client_id: "997021567508-mh2g2fv9cm60v9gcgstbbjpe8bisp69c.apps.googleusercontent.com",
         callback: handleCredentialResponse
     });
 
