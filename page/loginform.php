@@ -1,21 +1,13 @@
 
 <?php
+// Una muna ang config para ma-apply ang session cookie lifetime settings
+include "config.php"; 
 
-// 1. I-set ang haba ng buhay ng cookie bago mag-session_start
-// 30 araw * 24 oras * 60 minuto * 60 segundo = 2,592,000 segundo
-$cookie_lifetime = 30 * 24 * 60 * 60; 
-
-session_set_cookie_params([
-    'lifetime' => $cookie_lifetime,
-    'path' => '/',
-    'domain' => $_SERVER['HTTP_HOST'],
-    'secure' => false,     // I-set sa true kung may HTTPS/SSL na ang live site mo (e.g., Hostinger)
-    'httponly' => true,   // Proteksyon laban sa XSS script injections
-    'samesite' => 'Strict' // Dagdag proteksyon para sa security
-]);
-
-session_start();
-include "config.php";
+// KUNG NAKA-LOGIN NA: I-redirect agad sa homepage2.php para hindi na makita ang login form
+if (isset($_SESSION['user_id'])) {
+    header("Location: homepage2.php");
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -31,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows == 1) {
         $user = $result->fetch_assoc();
 
-        // password_verify automatically detects Argon2id or Bcrypt
         if (password_verify($password, $user['password'])) {
 
             $_SESSION['user_id'] = $user['id'];
@@ -44,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<script>alert('Invalid email or password.'); window.location='loginform.php';</script>";
         }
     } else {
-        // We use the same message for security (don't tell attackers which part was wrong)
         echo "<script>alert('Invalid email or password.'); window.location='loginform.php';</script>";
     }
     $stmt->close();
