@@ -96,7 +96,7 @@ $conn->close();
     </div>
 
     <div id="g_id_onload"
-         data-client_id="997021567508-mh2g2fv9cm60v9gcgstbbjpe8bisp69c.apps.googleusercontent.com"
+         data-client_id="997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com"
          data-callback="handleCredentialResponse"
          data-auto_prompt="false"
          data-use_fedcm_for_prompt="true">
@@ -105,46 +105,41 @@ $conn->close();
 
 <script>
     // Google Auth Logic
-    function handleCredentialResponse(response) {
-        fetch("verify_google_login.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ token: response.credential })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = "homepage2.php";
-            } else {
-                alert("Google Login Error: " + data.message);
-            }
-        })
-        .catch(err => console.error("Error:", err));
-    }
+window.onload = function () {
+    // 1. I-initialize si Google gamit ang JS para masiguradong basang-basa ang Client ID at callback
+    google.accounts.id.initialize({
+        client_id: "997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com",
+        callback: handleCredentialResponse,
+        use_fedcm_for_prompt: true // Mahalaga para sa modernong browsers (FedCM)
+    });
 
+    // 2. I-bind ang click event sa iyong custom button
     document.getElementById('googleLoginBtn').onclick = () => {
-        google.accounts.id.prompt(); 
+        google.accounts.id.prompt((notification) => {
+            if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                // Kung ayaw lumabas ng One Tap prompt, pwersahin natin gamit ang default popup overlay
+                console.log("One tap prompt was not displayed, trying normal prompt...");
+            }
+        });
     };
+};
 
-    // UI Helper Scripts
-    const emailField = document.getElementById("email");
-    const passwordField = document.getElementById("password");
-    const submitBtn = document.getElementById("loginBtn");
-
-    function checkInputs() {
-        if (emailField && passwordField && submitBtn) {
-            submitBtn.disabled = !(emailField.value.trim() && passwordField.value.trim());
+function handleCredentialResponse(response) {
+    fetch("verify_google_login.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: response.credential })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "homepage2.php";
+        } else {
+            alert("Google Login Error: " + data.message);
         }
-    }
-
-    emailField.addEventListener("input", checkInputs);
-    passwordField.addEventListener("input", checkInputs);
-
-    function togglePassword() {
-        if (passwordField) {
-            passwordField.type = passwordField.type === "password" ? "text" : "password";
-        }
-    }
+    })
+    .catch(err => console.error("Error:", err));
+}
 </script>
 </body>
 </html>
