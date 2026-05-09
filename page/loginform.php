@@ -73,7 +73,7 @@ $conn->close();
 
     <div class="divider"></div>
 
-    <form method="POST" action="loginform">
+    <form method="POST" action="loginform.php">
         <input type="text" name="fake_email" style="display:none" aria-hidden="true">
             <input type="password" name="fake_password" style="display:none" aria-hidden="true">
 
@@ -96,7 +96,7 @@ $conn->close();
     </div>
 
     <div id="g_id_onload"
-         data-client_id="997021567508-mh2g2fv9cm60v9gcgstbbjpe8bisp69c.apps.googleusercontent.com"
+         data-client_id="997021567508-chrjcc35gkiiigukc4u2jfu2qdmt.apps.googleusercontent.com"
          data-callback="handleCredentialResponse"
          data-auto_prompt="false"
          data-use_fedcm_for_prompt="true">
@@ -104,42 +104,62 @@ $conn->close();
 </div>
 
 <script>
-    // Google Auth Logic
+  
 window.onload = function () {
-    // 1. I-initialize si Google gamit ang JS para masiguradong basang-basa ang Client ID at callback
+
     google.accounts.id.initialize({
-        client_id: "997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com",
-        callback: handleCredentialResponse,
-        use_fedcm_for_prompt: true // Mahalaga para sa modernong browsers (FedCM)
+        client_id: "997021567508-chrjcc35gkiiigukc4u2jfu2qdmt.apps.googleusercontent.com",
+        callback: handleCredentialResponse
     });
 
-    // 2. I-bind ang click event sa iyong custom button
-    document.getElementById('googleLoginBtn').onclick = () => {
-        google.accounts.id.prompt((notification) => {
-            if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-                // Kung ayaw lumabas ng One Tap prompt, pwersahin natin gamit ang default popup overlay
-                console.log("One tap prompt was not displayed, trying normal prompt...");
-            }
-        });
-    };
+    // Render hidden Google button
+    google.accounts.id.renderButton(
+        document.getElementById("hiddenGoogleBtn"),
+        {
+            theme: "outline",
+            size: "large"
+        }
+    );
+
+    // Click your custom button -> trigger hidden Google button
+    document.getElementById("googleLoginBtn").addEventListener("click", function () {
+        document.querySelector("#hiddenGoogleBtn div[role=button]").click();
+    });
 };
 
 function handleCredentialResponse(response) {
+
+    if (!response.credential) {
+        alert("Google token not received.");
+        return;
+    }
+
     fetch("verify_google_login.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: response.credential })
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            token: response.credential
+        })
     })
     .then(res => res.json())
     .then(data => {
+
         if (data.success) {
             window.location.href = "homepage2.php";
         } else {
             alert("Google Login Error: " + data.message);
         }
+
     })
-    .catch(err => console.error("Error:", err));
+    .catch(error => {
+        console.error(error);
+        alert("Google login failed.");
+    });
 }
+
 </script>
+<div id="hiddenGoogleBtn" style="display:none;"></div>
 </body>
 </html>
