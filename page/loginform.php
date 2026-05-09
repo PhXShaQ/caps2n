@@ -73,7 +73,7 @@ $conn->close();
 
     <div class="divider"></div>
 
-    <form method="POST" action="loginform.php">
+    <form method="POST" action="loginform">
         <input type="text" name="fake_email" style="display:none" aria-hidden="true">
             <input type="password" name="fake_password" style="display:none" aria-hidden="true">
 
