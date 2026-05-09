@@ -93,12 +93,7 @@ $conn->close();
         Don’t have an account? <a href="registration.php">Sign up</a>
     </div>
 
-    <div id="g_id_onload"
-         data-client_id="997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com"
-         data-callback="handleCredentialResponse"
-         data-auto_prompt="false"
-         data-use_fedcm_for_prompt="true">
-    </div>
+    
 
    
 </div>
@@ -143,7 +138,7 @@ function handleCredentialResponse(response) {
         console.log(data);
 
         if (data.success) {
-            window.location.href = "homepage2.php";
+            window.location.href = "homepage2";
         } else {
             alert("Google Login Error: " + data.message);
         }
