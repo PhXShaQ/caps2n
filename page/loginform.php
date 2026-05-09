@@ -64,10 +64,10 @@ $conn->close();
     <div class="title">Welcome back</div>
 
     <button type="button" class="btn" id="googleBtn">
-        img src="https://www.svgrepo.com/show/475656/google-color.svg" style="width:18px; height:18px;">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" style="width:18px; height:18px;">
         Sign in with Google
     </button>
-   
+    <div id=""></div>
 
     <button class="btn"><i class="fab fa-apple"></i> Sign in with Apple</button>
     <button class="btn">Sign in with SSO</button>
