@@ -63,11 +63,11 @@ $conn->close();
     <div class="logo">Kevin's Angel</div>
     <div class="title">Welcome back</div>
 
-   
-    <div id="googleBtn">
-        <img src="https://www.svgrepo.com/show/475656/google-color.svg" style="width:18px; height:18px;">
+    <button type="button" class="btn" id="googleBtn">
+        img src="https://www.svgrepo.com/show/475656/google-color.svg" style="width:18px; height:18px;">
         Sign in with Google
-    </div>
+    </button>
+   
 
     <button class="btn"><i class="fab fa-apple"></i> Sign in with Apple</button>
     <button class="btn">Sign in with SSO</button>
@@ -96,7 +96,12 @@ $conn->close();
         Don’t have an account? <a href="registration.php">Sign up</a>
     </div>
 
-   
+    <div id="g_id_onload"
+         data-client_id="997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false"
+         data-use_fedcm_for_prompt="true">
+    </div>
 </div>
 
 <script>
