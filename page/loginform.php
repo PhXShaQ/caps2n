@@ -119,7 +119,7 @@ window.onload = function () {
 
 function handleCredentialResponse(response) {
 
-    console.log(response);
+    console.log("Google JWT Token:", response.credential); // Tignan ito sa inspect console
 
     if (!response.credential) {
         alert("No Google token received.");
