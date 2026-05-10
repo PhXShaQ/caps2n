@@ -1,36 +1,23 @@
 <?php
 session_start();
-include "config.php"; // Ensure this contains your $conn (mysqli) connection
+include "config.php"; // Siguraduhing nandito ang database connection ($conn)
 
-// Get the JSON data sent from the frontend fetch()
-$rawData = file_get_contents("php://input");
+header('Content-Type: application/json');
 
-file_put_contents("debug_google.txt", $rawData);
+// 1. Kunin ang token mula sa $_POST (dahil URLSearchParams ang pinadala ng JS)
+$id_token = isset($_POST['token']) ? trim($_POST['token']) : null;
 
-$data = json_decode($rawData, true);
-
-if (!$data || !isset($data['token'])) {
-
-    // fallback support for form-data
-    if (isset($_POST['token'])) {
-        $id_token = $_POST['token'];
-    } else {
-        echo json_encode([
-            'success' => false,
-            'message' => 'No token provided.'
-        ]);
-        exit;
-    }
-
-} else {
-    $id_token = $data['token'];
+// Kung talagang walang token na nakuha, mag-stop na at ibalik ang error
+if (empty($id_token)) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'No token received on the server side.'
+    ]);
+    exit;
 }
 
-$id_token = $data['token'];
-
-// 1. Verify the token using Google's API via cURL
-// This is a safe way to verify tokens without needing the full Google PHP Library
-$url = "https://oauth2.googleapis.com/tokeninfo?id_token=" . $id_token;
+// 2. I-verify ang token gamit ang Google OAuth tokeninfo API
+$url = "https://oauth2.googleapis.com/tokeninfo?id_token=" . urlencode($id_token);
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -39,13 +26,15 @@ curl_close($ch);
 
 $payload = json_decode($response, true);
 
-// 2. Check if the token is valid and matches your Client ID
-if (isset($payload['aud']) && $payload['aud'] === "997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com") {
+// 3. Siguraduhing tugma ang Client ID na nasa loginform.php (997021567508-...)
+$expected_client_id = "997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com";
+
+if (isset($payload['aud']) && $payload['aud'] === $expected_client_id) {
     
     $email = $payload['email'];
-    $name = $payload['name'];
+    $name = isset($payload['name']) ? $payload['name'] : '';
 
-    // 3. Check if the user already exists in your MySQL 'users' table
+    // 4. I-check kung registered na ba ang user sa database mo
     $sql = "SELECT id, email FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
@@ -53,15 +42,15 @@ if (isset($payload['aud']) && $payload['aud'] === "997021567508-chrjcc35gk63aqii
     $result = $stmt->get_result();
 
     if ($result->num_rows == 1) {
-        // User exists - Log them in
+        // May Account na - I-Log In ang User
         $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['email'] = $user['email'];
         
         echo json_encode(['success' => true]);
     } else {
-        // User does not exist in your DB
-        // OPTIONAL: You can automatically register them here, or return an error
+        // Kung gusto mo silang i-register agad, maaari kang maglagay ng INSERT query dito.
+        // Sa ngayon, ibalik muna natin ang alert na hindi pa sila registered sa DB.
         echo json_encode([
             'success' => false, 
             'message' => 'This Google account is not registered in our system.'
@@ -70,8 +59,11 @@ if (isset($payload['aud']) && $payload['aud'] === "997021567508-chrjcc35gk63aqii
     $stmt->close();
 
 } else {
-    // Token is invalid or expired
-    echo json_encode(['success' => false, 'message' => 'Invalid Google Token.']);
+    // Kung peke o expired ang token, o di kaya'y hindi match ang Client ID
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Invalid Google Token or Client ID mismatch.'
+    ]);
 }
 
 $conn->close();
