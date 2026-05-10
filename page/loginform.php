@@ -138,7 +138,7 @@ function handleCredentialResponse(response) {
         console.log(data);
 
         if (data.success) {
-            window.location.href = "homepage2";
+            window.location.href = "homepage2.php";
         } else {
             alert("Google Login Error: " + data.message);
         }
