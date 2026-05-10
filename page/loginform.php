@@ -118,37 +118,37 @@ window.onload = function () {
 };
 
 function handleCredentialResponse(response) {
-
-    console.log("Google JWT Token:", response.credential); // Tignan ito sa inspect console
+    console.log("Google JWT Token:", response.credential);
 
     if (!response.credential) {
         alert("No Google token received.");
         return;
     }
 
+    // IPADALA BILANG TUNAY NA JSON
     fetch("verify_google_login.php", {
         method: "POST",
-        body: new URLSearchParams({
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
             token: response.credential
         })
     })
     .then(res => res.json())
     .then(data => {
-
-        console.log(data);
-
+        console.log("Server Response:", data);
         if (data.success) {
-            window.location.href = "homepage2.php";
+            window.location.href = "homepage2.php"; // Siniguro nating may .php extension muna para sa testing
         } else {
             alert("Google Login Error: " + data.message);
         }
-
     })
     .catch(error => {
-        console.error(error);
-        alert("Fetch error.");
+        console.error("Fetch Error Detail:", error);
+        alert("Fetch error. Check console for details.");
     });
-}
+}s
 
 </script>
 
