@@ -27,7 +27,7 @@ curl_close($ch);
 $payload = json_decode($response, true);
 
 // 3. Siguraduhing tugma ang Client ID na nasa loginform.php (997021567508-...)
-$expected_client_id = "997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com";
+$expected_client_id = "411353244492-m58142v3qbafl7c4lodgv36jd6fsc6m4.apps.googleusercontent.com";
 
 if (isset($payload['aud']) && $payload['aud'] === $expected_client_id) {
     

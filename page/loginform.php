@@ -103,7 +103,7 @@ $conn->close();
 window.onload = function () {
 
     google.accounts.id.initialize({
-        client_id: "997021567508-chrjcc35gk63aqiiigukc4u2jfu2qdmt.apps.googleusercontent.com",
+        client_id: "411353244492-m58142v3qbafl7c4lodgv36jd6fsc6m4.apps.googleusercontent.com",
         callback: handleCredentialResponse
     });
 
