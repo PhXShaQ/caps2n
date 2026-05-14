@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
 
-            echo "<script>alert('Login Successful!'); window.location='homepage2.php';</script>";
+            echo "<script>alert('Login Successful!'); window.location='homepage.php';</script>";
             exit();
 
         } else {
