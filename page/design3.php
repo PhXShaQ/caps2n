@@ -29,7 +29,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
                 <img src="../logonam.png" alt="logo"/>
                 <h2>Kevin Angel's</h2>
             </div>
-            <a href="designhome.php" class="menu-item"><i data-lucide="house"></i> Home</a>
+            <a href="homepage.php" class="menu-item"><i data-lucide="house"></i> Home</a>
             <a href="design1.php" class="menu-item"><i data-lucide="mic"></i> Meeting</a>
             <a href="design2.php" class="menu-item"><i data-lucide="volume-2"></i> Voice Cloaning</a>
             <a href="design3.php" class="menu-item"style="background: var(--purple); color: white;"><i data-lucide="headphones"></i> Audio to Text</a>

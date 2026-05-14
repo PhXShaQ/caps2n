@@ -26,7 +26,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
                 <img src="../logonam.png" alt="logo"/>
                 
             </div>
-            <a href="designhome.php" class="menu-item"><i data-lucide="house"></i></a>
+            <a href="homepage.php" class="menu-item"><i data-lucide="house"></i></a>
             <a href="design1.php" class="menu-item" style="background: var(--purple); color: white;"><i data-lucide="mic"></i></a>
             <a href="design2.php" class="menu-item"><i data-lucide="volume-2"></i></a>
             <a href="design3.php" class="menu-item"><i data-lucide="headphones"></i></a>
