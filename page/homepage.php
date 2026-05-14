@@ -1,23 +1,12 @@
-  <?php
-
-  // I-paste din ito sa pinakataas ng homepage2.php at iba pang pages
-$cookie_lifetime = 30 * 24 * 60 * 60; 
-session_set_cookie_params([
-    'lifetime' => $cookie_lifetime,
-    'path' => '/',
-    'domain' => $_SERVER['HTTP_HOST'],
-    'secure' => false, // Gawing true kung naka-HTTPS sa live domain
-    'httponly' => true,
-    'samesite' => 'Strict'
-]);
-  session_start();
-  if (!isset($_SESSION['user_id'])) {
-      header("Location: loginform.php");
-      exit();
-  }
-  $userEmail = $_SESSION['email'] ?? 'User';
-  $initial = strtoupper(substr($userEmail, 0, 1));
-
+<?php
+// Include your session check at the very top
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: loginform.php");
+    exit();
+}
+$userEmail = $_SESSION['email'] ?? 'User';
+$initial = strtoupper(substr($userEmail, 0, 1));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,33 +23,170 @@ session_set_cookie_params([
         font-family: 'Inter', Arial, sans-serif;
     }
 
-    
+    /* --- GLOBAL TOP NAVIGATION BAR --- */
+    .top-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: transparent; 
+        z-index: 3000; 
+    }
+
     /* LOGO CONTAINER STYLE */
-.logo-wrapper {
-    position: absolute;
-    top: 30px; /* Distansya mula sa itaas */
-    left: 10%; /* Kapantay ng iyong .content */
-    z-index: 2000; /* Mas mataas sa lahat ng element */
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+    .logo-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
 
-img {
-    width: 5px; /* I-adjust base sa laki ng logo mo */
-    height: auto;
-}
+    /* FIX: Targeted the HTML img element correctly and gave it an optimal height */
+    .logo-wrapper img {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+    }
 
-.logo-text {
-    font-size: 24px;
-    font-weight: 600;
-    color: #fff;
-    margin: 0;
-    letter-spacing: 1px;
-    
-}
+    .logo-text {
+        font-size: 22px;
+        font-weight: 600;
+        color: #fff;
+        margin: 0;
+        letter-spacing: 1px;
+    }
 
-    /* SLIDER */
+    /* USER PROFILE ACTION OVERLAYS */
+    .header-actions {
+        position: relative; 
+    }
+
+    /* Tiny nav trigger button at top right corner */
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        background: #6347f9; 
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        user-select: none;
+    }
+
+    .user-avatar:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(99, 71, 249, 0.5);
+    }
+
+    /* --- DROPDOWN MODAL --- */
+    .profile-modal {
+        position: absolute;
+        top: 55px;
+        right: 0;
+        width: 280px;
+        background: #131419; 
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px; 
+        padding: 25px 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        display: none; 
+        flex-direction: column;
+        align-items: center; 
+        z-index: 4000;
+    }
+
+    .profile-modal.show {
+        display: flex;
+    }
+
+    /* Large internal modal profile circle */
+    .modal-avatar-large {
+        width: 65px;
+        height: 65px;
+        background: #6347f9;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .modal-username {
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+        margin: 0 0 4px 0;
+        text-align: center;
+    }
+
+    .modal-email {
+        font-size: 13px;
+        color: #6a6d7c; 
+        margin: 0 0 20px 0;
+        text-align: center;
+        word-break: break-all;
+    }
+
+    /* Manage Account Action Button style */
+    .modal-manage-btn {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #4d3bb2;
+        background: transparent;
+        color: #a496f9;
+        padding: 10px;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: 15px;
+        transition: 0.2s ease;
+    }
+
+    .modal-manage-btn:hover {
+        background: rgba(99, 71, 249, 0.1);
+        color: #fff;
+    }
+
+    /* Red Sign Out action button style */
+    .modal-logout-btn {
+        width: 100%;
+        box-sizing: border-box;
+        background: #211518; 
+        color: #f25c5c;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        text-decoration: none;
+        transition: 0.2s ease;
+    }
+
+    .modal-logout-btn:hover {
+        background: #dd3b3b;
+        color: #fff;
+    }
+
+    /* --- SLIDER --- */
     .slider {
         height: 100vh;
         position: relative;
@@ -68,7 +194,7 @@ img {
     }
 
     .slider .list .item {
-       position: absolute;
+        position: absolute;
         inset: 0;
         opacity: 0;
         visibility: hidden;
@@ -76,25 +202,32 @@ img {
     }
 
     .slider .list .item.active {
-       opacity: 1;
+        opacity: 1;
         visibility: visible;
         z-index: 2;
-
     }
 
     .slider .list .item img {
-    transform: scale(1.05);
-    transition: transform 0.8s ease;
-}
+        transform: scale(1.05);
+        transition: transform 0.8s ease;
+    }
 
-.slider .list .item.active img {
-    transform: scale(1);
-}
+    .slider .list .item.active img {
+        transform: scale(1);
+    }
 
     .slider img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
+        filter: brightness(0.6) contrast(1.1); 
+        transform: scale(1.08);
+        transition: transform 8s ease;
+    }
+
+    .slider .item.active img {
+        transform: scale(1);
     }
 
     /* DARK OVERLAY */
@@ -102,13 +235,15 @@ img {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, #000 30%, transparent);
+        background:
+            linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.2)),
+            linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     }
 
     /* CONTENT */
     .content {
         position: absolute;
-        top: 30%;
+        top: 35%; 
         left: 10%;
         z-index: 2;
         max-width: 600px;
@@ -162,7 +297,7 @@ img {
         }
     }
 
-    /* NAVIGATION BAR */
+    /* BOTTOM SLIDER CONTROLS NAVIGATION */
     .navbar {
         position: absolute;
         bottom: 50px;
@@ -195,63 +330,71 @@ img {
         background: #1a1a1a;
         border-radius: 40px;
     }
-
-
-/* Siguraduhin na ang .slider ay relative */
-.slider {
-    position: relative;
-}
-
-    /* ZOOM EFFECT */
-    
-
     </style>
     </head>
 
     <body>
 
-        <div class="slider">
-           
+        <header class="top-header">
             <div class="logo-wrapper">
-                
+                <img src="../logonam.png" alt="logo"/>
                 <h2 class="logo-text">Kevin's Angel</h2>
             </div>
+            
+            <div class="header-actions">
+                <div class="user-avatar" id="avatarTrigger">
+                    <?php echo $initial; ?>
+                </div>
 
+                <div class="profile-modal" id="profileModal">
+                    <div class="modal-avatar-large">
+                        <?php echo $initial; ?>
+                    </div>
+                    <h3 class="modal-username">Kevin Angel User</h3>
+                    <p class="modal-email"><?php echo htmlspecialchars($userEmail); ?></p>
+                    
+                    <a href="#" class="modal-manage-btn">
+                        Manage your Google Account 
+                        <span style="font-size:11px; margin-left:2px;">↗</span>
+                    </a>
+                    
+                    <a href="logout.php" class="modal-logout-btn">Sign Out</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="slider">
             <div class="list">
-                <!-- SLIDE 01 -->
                 <div class="item active">
-                    <img src="image1.jpg">
+                    <img src="image2.png">
                     <div class="content">
                         <p>AI Synthesis</p>
-                        <h2>Meeting</h2>
-                        <p>Convert your written text into natural-sounding speech using professional-grade AI voices.</p>
+                        <h2>Speech to Text</h2>
+                        <p>Transform your natural-sounding speech scripts and written text into flawless, using advanced AI vocal synthesis.</p>
                         <a href="registration.php" class="get-started-btn">Get Started</a>
                     </div>
                 </div>
 
-                <!-- SLIDE 02 -->
                 <div class="item">
-                    <img src="image2.png">
+                    <img src="image5.png">
                     <div class="content">
                         <p>AI Audio</p>
                         <h2>Voice Cloning</h2>
-                        <p>Generate high-fidelity music tracks and arrangements perfectly suited for your projects.</p>
+                        <p>Craft custom AI vocal tracks and professional audio arrangements tailored specifically to your project's unique style.</p>
                         <a href="registration.php" class="get-started-btn">Get Started</a>
                     </div>
                 </div>
 
-                <!-- SLIDE 03 -->
                 <div class="item">
                     <img src="image4.png">
                     <div class="content">
                         <p>Transcription</p>
                         <h2>Audio To Text</h2>
-                        <p>Accurately transcribe meeting records and interviews in real-time with ultra-low latency.</p>
+                        <p>Automatically convert meeting recordings, lectures, and interviews into accurate text formats with ultra-low latency.</p>
                         <a href="registration.php" class="get-started-btn">Get Started</a>
                     </div>
                 </div>
 
-                <!-- SLIDE 04 -->
                 <div class="item">
                     <img src="image2.png">
                     <div class="content">
@@ -263,7 +406,6 @@ img {
                 </div>
             </div>
 
-            <!-- NAVBAR -->
             <div class="navbar">
                 <div class="nav-item active" data-index="0">Speech to Text</div>
                 <div class="nav-item" data-index="1">Voice Cloning</div>
@@ -273,6 +415,7 @@ img {
         </div>
 
         <script>
+        // --- SLIDER INTERACTION LOGIC ---
         let slider = document.querySelector('.slider');
         let items = document.querySelectorAll('.slider .list .item');
         let navItems = document.querySelectorAll('.nav-item');
@@ -293,6 +436,23 @@ img {
             nav.addEventListener('click', () => {
                 showSlide(index);
             });
+        });
+
+        // --- AVATAR MODAL MODIFICATION ---
+        const avatarTrigger = document.getElementById('avatarTrigger');
+        const profileModal = document.getElementById('profileModal');
+
+        // Toggle modal visibility when avatar is clicked
+        avatarTrigger.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            profileModal.classList.toggle('show');
+        });
+
+        // Close the modal instantly if the user clicks anywhere outside of it
+        document.addEventListener('click', (e) => {
+            if (!profileModal.contains(e.target) && e.target !== avatarTrigger) {
+                profileModal.classList.remove('show');
+            }
         });
         </script>
 
