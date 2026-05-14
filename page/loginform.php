@@ -5,7 +5,7 @@ include "config.php";
 
 // KUNG NAKA-LOGIN NA: I-redirect agad sa homepage2.php para hindi na makita ang login form
 if (isset($_SESSION['user_id'])) {
-    header("Location: homepage2.php");
+    header("Location: homepage.php");
     exit();
 }
 
