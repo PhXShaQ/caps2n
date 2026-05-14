@@ -381,7 +381,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
                         <p>AI Audio</p>
                         <h2>Voice Cloning</h2>
                         <p>Craft custom AI vocal tracks and professional audio arrangements tailored specifically to your project's unique style.</p>
-                        <a href="rdesign2.php" class="get-started-btn">Get Started</a>
+                        <a href="design2.php" class="get-started-btn">Get Started</a>
                     </div>
                 </div>
 
