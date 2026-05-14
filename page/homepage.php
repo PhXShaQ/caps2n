@@ -371,7 +371,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
                         <p>AI Synthesis</p>
                         <h2>Speech to Text</h2>
                         <p>Transform your natural-sounding speech scripts and written text into flawless, using advanced AI vocal synthesis.</p>
-                        <a href="registration.php" class="get-started-btn">Get Started</a>
+                        <a href="design1.php" class="get-started-btn">Get Started</a>
                     </div>
                 </div>
 
@@ -381,7 +381,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
                         <p>AI Audio</p>
                         <h2>Voice Cloning</h2>
                         <p>Craft custom AI vocal tracks and professional audio arrangements tailored specifically to your project's unique style.</p>
-                        <a href="registration.php" class="get-started-btn">Get Started</a>
+                        <a href="rdesign2.php" class="get-started-btn">Get Started</a>
                     </div>
                 </div>
 
@@ -391,7 +391,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
                         <p>Transcription</p>
                         <h2>Audio To Text</h2>
                         <p>Automatically convert meeting recordings, lectures, and interviews into accurate text formats with ultra-low latency.</p>
-                        <a href="registration.php" class="get-started-btn">Get Started</a>
+                        <a href="design3.php" class="get-started-btn">Get Started</a>
                     </div>
                 </div>
 
@@ -401,7 +401,7 @@ $initial = strtoupper(substr($userEmail, 0, 1));
                         <p>Voice Cloning</p>
                         <h2>Voice Cloning</h2>
                         <p>Create a digital twin of your own voice for personalized automated summaries.</p>
-                        <a href="registration.php" class="get-started-btn">Get Started</a>
+                        <a href="design4.php" class="get-started-btn">Get Started</a>
                     </div>
                 </div>
             </div>
