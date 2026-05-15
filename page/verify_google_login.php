@@ -2,31 +2,36 @@
 session_start();
 include "config.php";
 
-// IMPORTANTE: Basahin ang raw input
+// Set header so the browser knows we are returning JSON
+header('Content-Type: application/json');
+
+// 1. TRY RAW INPUT (This is for FETCH JSON)
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
-if (!$data || !isset($data['token'])) {
-    echo json_encode(["success" => false, "message" => "No token received on the server side."]);
+// 2. TRY $_POST (Just in case)
+$id_token = null;
+if (isset($data['token'])) {
+    $id_token = $data['token'];
+} elseif (isset($_POST['token'])) {
+    $id_token = $_POST['token'];
+}
+
+// Check if we finally got the token
+if (!$id_token) {
+    echo json_encode(["success" => false, "message" => "Server still cannot see the token."]);
     exit();
 }
 
-$id_token = $data['token'];
-
-// I-verify ang token sa Google
+// 3. VERIFY WITH GOOGLE
 $url = "https://oauth2.googleapis.com/tokeninfo?id_token=" . $id_token;
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($ch);
-curl_close($ch);
-
+$response = file_get_contents($url);
 $payload = json_decode($response, true);
 
 if (isset($payload['email'])) {
     $email = $payload['email'];
 
-    // Check kung ang email ay nasa database na
+    // 4. DATABASE CHECK
     $sql = "SELECT id, email FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
@@ -39,9 +44,10 @@ if (isset($payload['email'])) {
         $_SESSION['email'] = $user['email'];
         echo json_encode(["success" => true]);
     } else {
-        echo json_encode(["success" => false, "message" => "Email not found in database. Please sign up first."]);
+        // If email is not in DB
+        echo json_encode(["success" => false, "message" => "Email $email is not registered."]);
     }
 } else {
-    echo json_encode(["success" => false, "message" => "Invalid Google Token."]);
+    echo json_encode(["success" => false, "message" => "Google rejected the token."]);
 }
 ?>
