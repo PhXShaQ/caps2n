@@ -134,29 +134,21 @@ window.onload = function () {
 };
 
 function handleCredentialResponse(response) {
-    // Debug: Tingnan natin kung may token na nakuha sa browser side
-    console.log("Token received:", response.credential);
-
+    // Ang 'response.credential' ay isang JWT Token galing kay Google
     fetch("verify_google_login.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: response.credential })
+        body: JSON.stringify({ token: response.credential }) // Ipinapasa ang token bilang JSON
     })
-    .then(res => res.text()) // Palitan muna natin ng .text() para makita ang raw error kung meron
-    .then(text => {
-        console.log("Server response:", text); // Makikita mo rito kung may PHP error
-        try {
-            const data = JSON.parse(text);
-            if (data.success) {
-                window.location.href = "homepage2.php";
-            } else {
-                alert("Google Login Error: " + data.message);
-            }
-        } catch (e) {
-            console.error("JSON Parse Error:", e);
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "homepage.php"; // Redirect pag success
+        } else {
+            alert("Login Failed: " + data.message);
         }
     })
-    .catch(err => console.error("Fetch Error:", err));
+    .catch(err => console.error("Error:", err));
 }
 
 </script>
