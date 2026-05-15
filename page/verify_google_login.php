@@ -22,7 +22,7 @@ if (isset($payload['email'])) {
     $email = $payload['email'];
 
     // Database Check
-    $sql = "SELECT id, email FROM users WHERE email = ?";
+    $sql = "SELECT id, email FROM user WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
