@@ -93,24 +93,7 @@ $conn->close();
         Don’t have an account? <a href="registration.php">Sign up</a>
     </div>
 
-    
 
-
-    <div id="g_id_onload"
-     data-client_id="411353244492-m58142v3qbafl7c4lodgv36jd6fsc6m4.apps.googleusercontent.com"
-     data-callback="handleCredentialResponse"
-     data-auto_prompt="false"
-     data-use_fedcm_for_prompt="true">
-</div>
-
-<div class="g_id_signin" 
-     data-type="standard" 
-     data-shape="rectangular" 
-     data-theme="outline" 
-     data-text="signin_with" 
-     data-size="large" 
-     data-logo_alignment="left">
-</div>
    
 </div>
 
