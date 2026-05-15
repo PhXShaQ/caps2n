@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    $sql = "SELECT * FROM user WHERE email = ?";
+    $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -116,34 +116,47 @@ $conn->close();
 
 <script>
   
+window.onload = function () {
+
+    google.accounts.id.initialize({
+        client_id: "411353244492-m58142v3qbafl7c4lodgv36jd6fsc6m4.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+    });
+
+    google.accounts.id.renderButton(
+        document.getElementById("googleBtn"),
+        {
+            theme: "outline",
+            size: "large",
+            width: 300
+        }
+    );
+};
 
 function handleCredentialResponse(response) {
-    // Debugging: Siguraduhin nating may laman ito
-    console.log("Token received by JS:", response.credential);
-
-    // Gagamit tayo ng URLSearchParams para magmukha siyang normal na form POST
-    const formData = new URLSearchParams();
-    formData.append('token', response.credential);
+    // Debug: Tingnan natin kung may token na nakuha sa browser side
+    console.log("Token received:", response.credential);
 
     fetch("verify_google_login.php", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" }, // Standard form format
-        body: formData.toString()
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: response.credential })
     })
-    .then(res => res.text()) // Kunin muna ang text para makita ang raw response
+    .then(res => res.text()) // Palitan muna natin ng .text() para makita ang raw error kung meron
     .then(text => {
-        console.log("Raw Server Response:", text);
+        console.log("Server response:", text); // Makikita mo rito kung may PHP error
         try {
             const data = JSON.parse(text);
             if (data.success) {
                 window.location.href = "homepage2.php";
             } else {
-                alert("Error: " + data.message);
+                alert("Google Login Error: " + data.message);
             }
         } catch (e) {
-            console.error("Hindi JSON ang binalik ng server. Check your PHP code.");
+            console.error("JSON Parse Error:", e);
         }
-    });
+    })
+    .catch(err => console.error("Fetch Error:", err));
 }
 
 </script>
