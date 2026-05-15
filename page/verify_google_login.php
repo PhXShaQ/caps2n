@@ -1,67 +1,53 @@
 <?php
 session_start();
-include "config.php"; // Siguraduhin na ang $conn ay defined dito
+include "config.php";
 
-// Set header para JSON ang output
+// Set header so the browser knows we are returning JSON
 header('Content-Type: application/json');
 
-// 1. Kuhanin ang JSON data mula sa Fetch
+// 1. TRY RAW INPUT (This is for FETCH JSON)
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
-// 2. Hanapin ang token (Check JSON or POST)
-$id_token = $data['token'] ?? $_POST['token'] ?? null;
+// 2. TRY $_POST (Just in case)
+$id_token = null;
+if (isset($data['token'])) {
+    $id_token = $data['token'];
+} elseif (isset($_POST['token'])) {
+    $id_token = $_POST['token'];
+}
 
+// Check if we finally got the token
 if (!$id_token) {
     echo json_encode(["success" => false, "message" => "Server still cannot see the token."]);
     exit();
 }
 
-// 3. VERIFY WITH GOOGLE (Using cURL - Mas stable ito sa Hostinger)
+// 3. VERIFY WITH GOOGLE
 $url = "https://oauth2.googleapis.com/tokeninfo?id_token=" . $id_token;
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Minsan kailangan ito sa local dev
-$response = curl_exec($ch);
-curl_close($ch);
-
+$response = file_get_contents($url);
 $payload = json_decode($response, true);
 
 if (isset($payload['email'])) {
     $email = $payload['email'];
 
     // 4. DATABASE CHECK
-    // Siguraduhin na ang $conn ay galing sa config.php
     $sql = "SELECT id, email FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
-    
-    if (!$stmt) {
-        echo json_encode(["success" => false, "message" => "DB Error: " . $conn->error]);
-        exit();
-    }
-
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        a
-        // Isave sa Session
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['email'] = $user['email'];
-        
         echo json_encode(["success" => true]);
     } else {
-        // Email is valid Google account pero wala sa database mo
-        echo json_encode(["success" => false, "message" => "The email $email is not registered in our system."]);
+        // If email is not in DB
+        echo json_encode(["success" => false, "message" => "Email $email is not registered."]);
     }
-    $stmt->close();
 } else {
-    echo json_encode(["success" => false, "message" => "Google verification failed or token expired."]);
+    echo json_encode(["success" => false, "message" => "Google rejected the token."]);
 }
-
-$conn->close();
 ?>
