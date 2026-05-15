@@ -94,18 +94,23 @@ $conn->close();
     </div>
 
     
-    <!-- Load Google Library -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-    <!-- Ang Google Button Container -->
+
     <div id="g_id_onload"
-        data-client_id="411353244492-m58142v3qbafl7c4lodgv36jd6fsc6m4.apps.googleusercontent.com"
-        data-callback="handleCredentialResponse"
-        data-auto_prompt="false">
-    </div>
+     data-client_id="411353244492-m58142v3qbafl7c4lodgv36jd6fsc6m4.apps.googleusercontent.com"
+     data-callback="handleCredentialResponse"
+     data-auto_prompt="false"
+     data-use_fedcm_for_prompt="true">
+</div>
 
-    <!-- Ito ang magpapakita ng mismong button -->
-    <div class="g_id_signin" data-type="standard"></div>
+<div class="g_id_signin" 
+     data-type="standard" 
+     data-shape="rectangular" 
+     data-theme="outline" 
+     data-text="signin_with" 
+     data-size="large" 
+     data-logo_alignment="left">
+</div>
    
 </div>
 
@@ -129,21 +134,29 @@ window.onload = function () {
 };
 
 function handleCredentialResponse(response) {
-    // Ang 'response.credential' ay isang JWT Token galing kay Google
+    // Debug: Tingnan natin kung may token na nakuha sa browser side
+    console.log("Token received:", response.credential);
+
     fetch("verify_google_login.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: response.credential }) // Ipinapasa ang token bilang JSON
+        body: JSON.stringify({ token: response.credential })
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = "homepage.php"; // Redirect pag success
-        } else {
-            alert("Login Failed: " + data.message);
+    .then(res => res.text()) // Palitan muna natin ng .text() para makita ang raw error kung meron
+    .then(text => {
+        console.log("Server response:", text); // Makikita mo rito kung may PHP error
+        try {
+            const data = JSON.parse(text);
+            if (data.success) {
+                window.location.href = "homepage2.php";
+            } else {
+                alert("Google Login Error: " + data.message);
+            }
+        } catch (e) {
+            console.error("JSON Parse Error:", e);
         }
     })
-    .catch(err => console.error("Error:", err));
+    .catch(err => console.error("Fetch Error:", err));
 }
 
 </script>
