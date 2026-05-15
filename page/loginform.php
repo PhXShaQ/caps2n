@@ -94,7 +94,18 @@ $conn->close();
     </div>
 
     
+    <!-- Load Google Library -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
+    <!-- Ang Google Button Container -->
+    <div id="g_id_onload"
+        data-client_id="411353244492-m58142v3qbafl7c4lodgv36jd6fsc6m4.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse"
+        data-auto_prompt="false">
+    </div>
+
+    <!-- Ito ang magpapakita ng mismong button -->
+    <div class="g_id_signin" data-type="standard"></div>
    
 </div>
 
@@ -118,37 +129,22 @@ window.onload = function () {
 };
 
 function handleCredentialResponse(response) {
-    console.log("Google JWT Token:", response.credential);
-
-    if (!response.credential) {
-        alert("No Google token received.");
-        return;
-    }
-
-    // IPADALA BILANG TUNAY NA JSON
+    // Ang 'response.credential' ay isang JWT Token galing kay Google
     fetch("verify_google_login.php", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            token: response.credential
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: response.credential }) // Ipinapasa ang token bilang JSON
     })
     .then(res => res.json())
     .then(data => {
-        console.log("Server Response:", data);
         if (data.success) {
-            window.location.href = "homepage2.php"; // Siniguro nating may .php extension muna para sa testing
+            window.location.href = "homepage.php"; // Redirect pag success
         } else {
-            alert("Google Login Error: " + data.message);
+            alert("Login Failed: " + data.message);
         }
     })
-    .catch(error => {
-        console.error("Fetch Error Detail:", error);
-        alert("Fetch error. Check console for details.");
-    });
-}s
+    .catch(err => console.error("Error:", err));
+}
 
 </script>
 
