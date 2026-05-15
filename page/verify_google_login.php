@@ -2,36 +2,26 @@
 session_start();
 include "config.php";
 
-// Set header so the browser knows we are returning JSON
+// Set header
 header('Content-Type: application/json');
 
-// 1. TRY RAW INPUT (This is for FETCH JSON)
-$json = file_get_contents('php://input');
-$data = json_decode($json, true);
+// Sa bagong JS code sa taas, dapat nasa $_POST na ang token
+$id_token = $_POST['token'] ?? null;
 
-// 2. TRY $_POST (Just in case)
-$id_token = null;
-if (isset($data['token'])) {
-    $id_token = $data['token'];
-} elseif (isset($_POST['token'])) {
-    $id_token = $_POST['token'];
-}
-
-// Check if we finally got the token
 if (!$id_token) {
-    echo json_encode(["success" => false, "message" => "Server still cannot see the token."]);
+    echo json_encode(["success" => false, "message" => "Server still cannot see the token. Please check network tab."]);
     exit();
 }
 
-// 3. VERIFY WITH GOOGLE
+// Verification via Google
 $url = "https://oauth2.googleapis.com/tokeninfo?id_token=" . $id_token;
-$response = file_get_contents($url);
+$response = file_get_contents($url); // Subukan muna ito, kung ayaw, gamitin ang cURL version sa taas
 $payload = json_decode($response, true);
 
 if (isset($payload['email'])) {
     $email = $payload['email'];
 
-    // 4. DATABASE CHECK
+    // Database Check
     $sql = "SELECT id, email FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
@@ -44,10 +34,9 @@ if (isset($payload['email'])) {
         $_SESSION['email'] = $user['email'];
         echo json_encode(["success" => true]);
     } else {
-        // If email is not in DB
-        echo json_encode(["success" => false, "message" => "Email $email is not registered."]);
+        echo json_encode(["success" => false, "message" => "Email $email not registered in database."]);
     }
 } else {
-    echo json_encode(["success" => false, "message" => "Google rejected the token."]);
+    echo json_encode(["success" => false, "message" => "Google Token Invalid."]);
 }
 ?>

@@ -116,47 +116,34 @@ $conn->close();
 
 <script>
   
-window.onload = function () {
-
-    google.accounts.id.initialize({
-        client_id: "411353244492-m58142v3qbafl7c4lodgv36jd6fsc6m4.apps.googleusercontent.com",
-        callback: handleCredentialResponse
-    });
-
-    google.accounts.id.renderButton(
-        document.getElementById("googleBtn"),
-        {
-            theme: "outline",
-            size: "large",
-            width: 300
-        }
-    );
-};
 
 function handleCredentialResponse(response) {
-    // Debug: Tingnan natin kung may token na nakuha sa browser side
-    console.log("Token received:", response.credential);
+    // Debugging: Siguraduhin nating may laman ito
+    console.log("Token received by JS:", response.credential);
+
+    // Gagamit tayo ng URLSearchParams para magmukha siyang normal na form POST
+    const formData = new URLSearchParams();
+    formData.append('token', response.credential);
 
     fetch("verify_google_login.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: response.credential })
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }, // Standard form format
+        body: formData.toString()
     })
-    .then(res => res.text()) // Palitan muna natin ng .text() para makita ang raw error kung meron
+    .then(res => res.text()) // Kunin muna ang text para makita ang raw response
     .then(text => {
-        console.log("Server response:", text); // Makikita mo rito kung may PHP error
+        console.log("Raw Server Response:", text);
         try {
             const data = JSON.parse(text);
             if (data.success) {
                 window.location.href = "homepage2.php";
             } else {
-                alert("Google Login Error: " + data.message);
+                alert("Error: " + data.message);
             }
         } catch (e) {
-            console.error("JSON Parse Error:", e);
+            console.error("Hindi JSON ang binalik ng server. Check your PHP code.");
         }
-    })
-    .catch(err => console.error("Fetch Error:", err));
+    });
 }
 
 </script>
